@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Threading;
 using TimerUI.Models;
-namespace TimerUI.ViewModels
+using TimerUI.ViewModels;
+
+namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
@@ -21,7 +23,6 @@ namespace TimerUI.ViewModels
                 {
                     _seconds = value;
                 }
-
                 OnPropertyChanged("Seconds");
             }
         }

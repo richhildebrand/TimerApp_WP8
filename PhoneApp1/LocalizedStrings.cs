@@ -1,4 +1,4 @@
-﻿using PhoneApp1.Resources;
+﻿using TimerUI.Resources;
 
 namespace PhoneApp1
 {

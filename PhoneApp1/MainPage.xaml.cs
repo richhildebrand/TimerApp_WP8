@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 
-namespace PhoneApp1
+namespace TimerUI
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -13,6 +13,16 @@ namespace PhoneApp1
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            
+        }
+
+        private void StopButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
         }
 
         // Sample code for building a localized ApplicationBar

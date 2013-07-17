@@ -29,6 +29,11 @@ namespace TimerUI.ViewModel
 
         public MainPageViewModel()
         {
+
+        }
+
+        public void StartCounter()
+        {
             _stopWatch = new StopWatch();
             _stopWatch.Seconds = 0;
 
@@ -37,8 +42,6 @@ namespace TimerUI.ViewModel
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             _dispatcherTimer.Start();
         }
-
-
 
         private void _dispatcherTimer_Tick(object sender, EventArgs e)
         {

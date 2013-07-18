@@ -33,6 +33,11 @@ namespace TimerUI.ViewModel
         {
         }
 
+        public ICommand StopButtonClick
+        {
+            get { return new DelegateCommand(StopCounter, WitchCraft); }
+        }
+
         public ICommand StartButtonClick
         {
             get { return new DelegateCommand(StartCounter, WitchCraft); }
@@ -41,6 +46,11 @@ namespace TimerUI.ViewModel
         public bool WitchCraft(object flyingBroom)
         {
             return true;
+        }
+
+        public void StopCounter(object freezeSpell)
+        {
+            _dispatcherTimer.Stop();
         }
 
         public void StartCounter(object fireBall)

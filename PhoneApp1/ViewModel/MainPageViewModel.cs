@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Windows.Input;
 using System.Windows.Threading;
 using TimerUI.Models;
 using TimerUI.ViewModels;
+using TimerUI.ViewModels.Commands;
 
 namespace TimerUI.ViewModel
 {
@@ -29,21 +31,30 @@ namespace TimerUI.ViewModel
 
         public MainPageViewModel()
         {
-
         }
 
-        public void StartCounter()
+        public ICommand StartButtonClick
+        {
+            get { return new DelegateCommand(StartCounter, WitchCraft); }
+        }
+
+        public bool WitchCraft(object flyingBroom)
+        {
+            return true;
+        }
+
+        public void StartCounter(object fireBall)
         {
             _stopWatch = new StopWatch();
             _stopWatch.Seconds = 0;
 
             _dispatcherTimer = new DispatcherTimer();
-            _dispatcherTimer.Tick += _dispatcherTimer_Tick;
+            _dispatcherTimer.Tick += DispatcherTimerTick;
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             _dispatcherTimer.Start();
         }
 
-        private void _dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimerTick(object sender, EventArgs e)
         {
             _stopWatch.Seconds += 1;
             Seconds = _stopWatch.Seconds;

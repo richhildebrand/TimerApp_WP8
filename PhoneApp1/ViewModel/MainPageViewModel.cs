@@ -12,6 +12,7 @@ namespace TimerUI.ViewModel
         private DispatcherTimer _dispatcherTimer;
         private StopWatch _stopWatch;
         private int _seconds;
+        private string _buttonText = "Start";
 
         public int Seconds
         {
@@ -29,21 +30,34 @@ namespace TimerUI.ViewModel
             }
         }
 
+        public string ButtonText
+        {
+            get { return _buttonText; }
+            set 
+            {
+                if (_buttonText != value)
+                {
+                    _buttonText = value;
+                }
+                OnPropertyChanged("ButtonText");
+            }
+        }
+
         public MainPageViewModel()
         {
         }
 
         public ICommand StopButtonClick
         {
-            get { return new DelegateCommand(StopCounter, WitchCraft); }
+            get { return new DelegateCommand(StopCounter, CanExecute); }
         }
 
         public ICommand StartButtonClick
         {
-            get { return new DelegateCommand(StartCounter, WitchCraft); }
+            get { return new DelegateCommand(StartCounter, CanExecute); }
         }
 
-        public bool WitchCraft(object flyingBroom)
+        public bool CanExecute(object returnsTrue)
         {
             return true;
         }
@@ -62,6 +76,8 @@ namespace TimerUI.ViewModel
             _dispatcherTimer.Tick += DispatcherTimerTick;
             _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             _dispatcherTimer.Start();
+            _stopWatch.ButtonText = "Stop";
+            ButtonText = _stopWatch.ButtonText;
         }
 
         private void DispatcherTimerTick(object sender, EventArgs e)

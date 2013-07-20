@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
 using TimerUI.Models;
 using TimerUI.ViewModels.Commands;
 using GalaSoft.MvvmLight;
@@ -10,9 +9,9 @@ namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private StopWatch _stopWatch;
-        private int _seconds;
+        private readonly StopWatch _stopWatch;
         private string _buttonText = "Start";
+        private int _seconds;
 
         public MainPageViewModel()
         {
@@ -27,34 +26,19 @@ namespace TimerUI.ViewModel
 
         public int Seconds
         {
-            get
-            {
-                return _seconds;
-            }
+            get { return _seconds; }
             set { _seconds = value; RaisePropertyChanged("Seconds"); }
         }
 
         public string ButtonText
         {
             get { return _buttonText; }
-            set 
-            {
-                if (_buttonText != value)
-                {
-                    _buttonText = value;
-                }
-                RaisePropertyChanged("ButtonText");
-            }
+            set { _buttonText = value; RaisePropertyChanged("ButtonText"); }
         }
 
         public ICommand StartButtonClick
         {
-            get { return new DelegateCommand(ToggleStartAndStopButton, ReturnsTrue); }
-        }
-
-        public bool ReturnsTrue(object notUsed)
-        {
-            return true;
+            get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
         }
 
         public bool CanExecute(object returnsTrue)
@@ -62,27 +46,17 @@ namespace TimerUI.ViewModel
             return true;
         }
 
-        public void StopCounter()
-        {
-            _stopWatch.Stop();
-            ButtonText = "Start";
-        }
-
-        public void StartCounter()
-        {
-            _stopWatch.Start();
-            ButtonText = "Stop";
-        }
-
-        public void ToggleStartAndStopButton(object something)
+        public void ToggleStartAndStopButton(object sender)
         {
             if (ButtonText == "Start")
             {
-                StartCounter();
+                _stopWatch.Start();
+                ButtonText = "Stop";
             }
             else if (ButtonText == "Stop")
             {
-                StopCounter();
+                _stopWatch.Stop();
+                ButtonText = "Start";
             }
         }
     }

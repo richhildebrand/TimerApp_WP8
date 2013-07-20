@@ -10,7 +10,7 @@ namespace Unit_Tests.ButtonClicked
     public class StartButtonShould
     {
         [TestMethod]
-        public void ChangeButtonTextToStop()
+        public void ChangeButtonTextFromStartToStop()
         {
             //This test will probably change because the logic will probably change but I just wanted
             //to get a unit test in here. Below I'll put a few instructions on how to run these.
@@ -22,12 +22,26 @@ namespace Unit_Tests.ButtonClicked
             //I'm really excited about this
 
             var mainPageViewModel = new MainPageViewModel();
-            var thing = new Object();
-            mainPageViewModel.StartCounter();
+            mainPageViewModel.ButtonText = "Start"; 
+            var sender = new Object();
 
-            var expectedValue = mainPageViewModel.ButtonText;
+            mainPageViewModel.ToggleStartAndStopButton(sender);
+            var actualValue = mainPageViewModel.ButtonText;
 
-            Assert.AreEqual(expectedValue, "Stop");
+            Assert.AreEqual("Stop", actualValue);
+        }
+
+        [TestMethod]
+        public void ChangeButtonTextFromStopToStart()
+        {
+            var mainPageViewModel = new MainPageViewModel();
+            mainPageViewModel.ButtonText = "Stop";
+            var sender = new Object();
+
+            mainPageViewModel.ToggleStartAndStopButton(sender);
+            var actualValue = mainPageViewModel.ButtonText;
+
+            Assert.AreEqual("Start", actualValue);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Messaging;
@@ -8,7 +7,7 @@ namespace TimerUI.Models
 {
     public class StopWatch
     {
-        private DispatcherTimer _timer;
+        private readonly DispatcherTimer _timer;
         private int _seconds;
 
         public int Seconds

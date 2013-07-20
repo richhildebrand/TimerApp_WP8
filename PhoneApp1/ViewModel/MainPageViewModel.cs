@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
+using TimerUI.Interfaces;
 using TimerUI.ViewModels.Commands;
 using GalaSoft.MvvmLight;
 
@@ -8,14 +9,18 @@ namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private readonly StopWatch _stopWatch;
+        private readonly IStopWatch _stopWatch;
         private string _buttonText = "Start";
         private int _seconds;
 
-        public MainPageViewModel()
+        public MainPageViewModel(IStopWatch stopWatch)
         {
-            _stopWatch = new StopWatch();
+            _stopWatch = stopWatch;
             Messenger.Default.Register<StopWatch>(this, OnStopWatchTick);
+        }
+
+        public MainPageViewModel() : this(new StopWatch())
+        {
         }
 
         private void OnStopWatchTick(StopWatch stopWatch)

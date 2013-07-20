@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 
 namespace TimerUI
 {
-    public class StopWatch
+    public class StopWatch : TimerUI.Interfaces.IStopWatch
     {
         private readonly DispatcherTimer _timer;
 
@@ -16,7 +16,6 @@ namespace TimerUI
             _timer = new DispatcherTimer();
             _timer.Tick += OnEachTick;
             _timer.Interval = new TimeSpan(0, 0, 1);
-            
         }
 
         private void OnEachTick(object sender, EventArgs e)

@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TimerUI.Interfaces;
 using TimerUI.ViewModel;
-using Moq;
 
 namespace Unit_Tests.ButtonClicked
 {
     [TestClass]
     public class StartButtonShould
     {
+        private MainPageViewModel _mainPageViewModel;
+        private object _sender;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            _mainPageViewModel = new MainPageViewModel();
+            _sender = new Object();
+        }
+
         [TestMethod]
         public void ChangeButtonTextFromStartToStop()
         {
@@ -21,12 +31,12 @@ namespace Unit_Tests.ButtonClicked
             //http://michaelcrump.net/setting-up-unit-testing-in-windows-phone-7-and-8
             //I'm really excited about this
 
-            var mainPageViewModel = new MainPageViewModel();
-            mainPageViewModel.ButtonText = "Start"; 
-            var sender = new Object();
 
-            mainPageViewModel.ToggleStartAndStopButton(sender);
-            var actualValue = mainPageViewModel.ButtonText;
+            // Yes Yes Yes! Go you man!
+            _mainPageViewModel.ButtonText = "Start";
+
+            _mainPageViewModel.ToggleStartAndStopButton(_sender);
+            var actualValue = _mainPageViewModel.ButtonText;
 
             Assert.AreEqual("Stop", actualValue);
         }
@@ -34,12 +44,10 @@ namespace Unit_Tests.ButtonClicked
         [TestMethod]
         public void ChangeButtonTextFromStopToStart()
         {
-            var mainPageViewModel = new MainPageViewModel();
-            mainPageViewModel.ButtonText = "Stop";
-            var sender = new Object();
+            _mainPageViewModel.ButtonText = "Stop";
 
-            mainPageViewModel.ToggleStartAndStopButton(sender);
-            var actualValue = mainPageViewModel.ButtonText;
+            _mainPageViewModel.ToggleStartAndStopButton(_sender);
+            var actualValue = _mainPageViewModel.ButtonText;
 
             Assert.AreEqual("Start", actualValue);
         }

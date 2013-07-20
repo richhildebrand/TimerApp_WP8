@@ -172,9 +172,6 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Phone">
       <HintPath>..\packages\WPToolkitTestFx.4.2012.11.14\lib\wp8\Microsoft.VisualStudio.QualityTools.UnitTesting.Phone.dll</HintPath>
     </Reference>
-    <Reference Include="Moq.Silverlight">
-      <HintPath>libs\Moq.Silverlight.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhoneApp1\TimerUI.csproj">

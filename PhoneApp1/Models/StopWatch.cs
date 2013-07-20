@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Threading;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace TimerUI.Models
 {
@@ -16,7 +17,9 @@ namespace TimerUI.Models
             {
                 return _seconds;
             }
-            set { _seconds = value; }
+            set { _seconds = value;
+                  Messenger.Default.Send<StopWatch>(this);
+            }
         }
 
         public StopWatch()
@@ -24,6 +27,7 @@ namespace TimerUI.Models
             _timer = new DispatcherTimer();
             _timer.Tick += OnEachTick;
             _timer.Interval = new TimeSpan(0, 0, 1);
+            
         }
 
         private void OnEachTick(object sender, EventArgs e)

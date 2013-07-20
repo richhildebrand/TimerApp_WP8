@@ -11,11 +11,27 @@ namespace TimerUI.ViewModel
     public class MainPageViewModel : ViewModelBase
     {
         private StopWatch _stopWatch;
+        private int _seconds;
         private string _buttonText = "Start";
 
         public MainPageViewModel()
         {
             _stopWatch = new StopWatch();
+            Messenger.Default.Register<StopWatch>(this, OnStopWatchTick);
+        }
+
+        private void OnStopWatchTick(StopWatch stopWatch)
+        {
+            Seconds = stopWatch.Seconds;
+        }
+
+        public int Seconds
+        {
+            get
+            {
+                return _seconds;
+            }
+            set { _seconds = value; RaisePropertyChanged("Seconds"); }
         }
 
         public string ButtonText

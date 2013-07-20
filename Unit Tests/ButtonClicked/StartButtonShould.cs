@@ -10,14 +10,15 @@ namespace Unit_Tests.ButtonClicked
     [TestClass]
     public class StartButtonShould
     {
+        private FakeStopWatch _fakeStopWatch;
         private MainPageViewModel _mainPageViewModel;
         private object _sender;
 
         [TestInitialize]
         public void SetUp()
         {
-            var fakeStopWatch = new FakeStopWatch();
-            _mainPageViewModel = new MainPageViewModel(fakeStopWatch);
+            _fakeStopWatch = new FakeStopWatch();
+            _mainPageViewModel = new MainPageViewModel(_fakeStopWatch);
             _sender = new Object();
         }
 
@@ -52,6 +53,32 @@ namespace Unit_Tests.ButtonClicked
             var actualValue = _mainPageViewModel.ButtonText;
 
             Assert.AreEqual("Start", actualValue);
+        }
+
+        // I hate this but couldn't get mocking to work.
+        // The internets told me the silverlight version of MoQ would work, I could not get it though.
+        [TestMethod]
+        public void CallStopOnTheStopWatchWhenTextIsStop()
+        {
+            _fakeStopWatch.StopWasCalled = false;
+            _mainPageViewModel.ButtonText = "Stop";
+
+            _mainPageViewModel.ToggleStartAndStopButton(_sender);
+
+            Assert.IsTrue(_fakeStopWatch.StopWasCalled);
+        }
+
+        // I hate this but couldn't get mocking to work.
+        // The internets told me the silverlight version of MoQ would work, I could not get it though.
+        [TestMethod]
+        public void CallStartOnTheStopWatStart()
+        {
+            _fakeStopWatch.StartWasCalled = false;
+            _mainPageViewModel.ButtonText = "Start";
+
+            _mainPageViewModel.ToggleStartAndStopButton(_sender);
+
+            Assert.IsTrue(_fakeStopWatch.StartWasCalled);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Messaging;
-using TimerUI.Models;
 using TimerUI.ViewModels.Commands;
 using GalaSoft.MvvmLight;
 

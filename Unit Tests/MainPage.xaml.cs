@@ -1,28 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using Microsoft.Phone.Testing;
+using Unit_Tests.Resources;
 
-namespace TimerUI
+namespace Unit_Tests
 {
     public partial class MainPage : PhoneApplicationPage
     {
         // Constructor
         public MainPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            //Creates the Unit Test page
+            this.Content = UnitTestSystem.CreateTestPage();
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
-        }
-
-        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            
-        }
-
-        private void StopButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
         }
 
         // Sample code for building a localized ApplicationBar

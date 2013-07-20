@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerUI", "PhoneApp1\TimerUI.csproj", "{E653AFDA-3C0F-4F22-8079-56386E949339}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit Tests", "Unit Tests\Unit Tests.csproj", "{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,24 @@ Global
 		{E653AFDA-3C0F-4F22-8079-56386E949339}.Release|x86.ActiveCfg = Release|x86
 		{E653AFDA-3C0F-4F22-8079-56386E949339}.Release|x86.Build.0 = Release|x86
 		{E653AFDA-3C0F-4F22-8079-56386E949339}.Release|x86.Deploy.0 = Release|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|ARM.Build.0 = Debug|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|ARM.Deploy.0 = Debug|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|x86.ActiveCfg = Debug|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|x86.Build.0 = Debug|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Debug|x86.Deploy.0 = Debug|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|ARM.ActiveCfg = Release|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|ARM.Build.0 = Release|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|ARM.Deploy.0 = Release|ARM
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|x86.ActiveCfg = Release|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|x86.Build.0 = Release|x86
+		{ABD8AA55-5364-484E-9E18-08DAD6AAB6C3}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TimerUI.Interfaces;
 using TimerUI.ViewModel;
+using Unit_Tests.Fakes;
 
 namespace Unit_Tests.ButtonClicked
 {
@@ -15,7 +16,8 @@ namespace Unit_Tests.ButtonClicked
         [TestInitialize]
         public void SetUp()
         {
-            _mainPageViewModel = new MainPageViewModel();
+            var fakeStopWatch = new FakeStopWatch();
+            _mainPageViewModel = new MainPageViewModel(fakeStopWatch);
             _sender = new Object();
         }
 

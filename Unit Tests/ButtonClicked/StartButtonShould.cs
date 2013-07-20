@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TimerUI.ViewModel;
+using Moq;
 
 namespace Unit_Tests.ButtonClicked
 {

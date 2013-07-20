@@ -1,33 +1,21 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Windows.Threading;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using TimerUI.Models;
-using TimerUI.ViewModels;
 using TimerUI.ViewModels.Commands;
+using GalaSoft.MvvmLight;
 
 namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private DispatcherTimer _dispatcherTimer;
         private StopWatch _stopWatch;
-        private int _seconds;
         private string _buttonText = "Start";
 
-        public int Seconds
+        public MainPageViewModel()
         {
-            get
-            {
-                return _seconds;
-            }
-            set
-            {
-                if (_seconds != value)
-                {
-                    _seconds = value;
-                }
-                OnPropertyChanged("Seconds");
-            }
+            _stopWatch = new StopWatch();
         }
 
         public string ButtonText
@@ -39,16 +27,18 @@ namespace TimerUI.ViewModel
                 {
                     _buttonText = value;
                 }
-                OnPropertyChanged("ButtonText");
+                RaisePropertyChanged("ButtonText");
             }
         }
 
-        public MainPageViewModel()
-        { }
-
         public ICommand StartButtonClick
         {
-            get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
+            get { return new DelegateCommand(ToggleStartAndStopButton, ReturnsTrue); }
+        }
+
+        public bool ReturnsTrue(object notUsed)
+        {
+            return true;
         }
 
         public bool CanExecute(object returnsTrue)
@@ -58,22 +48,14 @@ namespace TimerUI.ViewModel
 
         public void StopCounter()
         {
-            _dispatcherTimer.Stop();
-            _stopWatch.ButtonText = "Start";
-            ButtonText = _stopWatch.ButtonText;
+            _stopWatch.Stop();
+            ButtonText = "Start";
         }
 
         public void StartCounter()
         {
-            _stopWatch = new StopWatch();
-            _stopWatch.Seconds = 0;
-
-            _dispatcherTimer = new DispatcherTimer();
-            _dispatcherTimer.Tick += DispatcherTimerTick;
-            _dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            _dispatcherTimer.Start();
-            _stopWatch.ButtonText = "Stop";
-            ButtonText = _stopWatch.ButtonText;
+            _stopWatch.Start();
+            ButtonText = "Stop";
         }
 
         public void ToggleStartAndStopButton(object something)
@@ -87,11 +69,5 @@ namespace TimerUI.ViewModel
                 StopCounter();
             }
         }
-        private void DispatcherTimerTick(object sender, EventArgs e)
-        {
-            _stopWatch.Seconds += 1;
-            Seconds = _stopWatch.Seconds;
-        }
-
     }
 }

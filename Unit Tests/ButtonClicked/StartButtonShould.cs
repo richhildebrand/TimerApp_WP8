@@ -22,7 +22,7 @@ namespace Unit_Tests.ButtonClicked
 
             var mainPageViewModel = new MainPageViewModel();
             var thing = new Object();
-            mainPageViewModel.StartCounter(thing);
+            mainPageViewModel.StartCounter();
 
             var expectedValue = mainPageViewModel.ButtonText;
 

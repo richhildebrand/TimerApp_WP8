@@ -44,17 +44,11 @@ namespace TimerUI.ViewModel
         }
 
         public MainPageViewModel()
-        {
-        }
-
-        public ICommand StopButtonClick
-        {
-            get { return new DelegateCommand(StopCounter, CanExecute); }
-        }
+        { }
 
         public ICommand StartButtonClick
         {
-            get { return new DelegateCommand(StartCounter, CanExecute); }
+            get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
         }
 
         public bool CanExecute(object returnsTrue)
@@ -62,12 +56,14 @@ namespace TimerUI.ViewModel
             return true;
         }
 
-        public void StopCounter(object freezeSpell)
+        public void StopCounter()
         {
             _dispatcherTimer.Stop();
+            _stopWatch.ButtonText = "Start";
+            ButtonText = _stopWatch.ButtonText;
         }
 
-        public void StartCounter(object fireBall)
+        public void StartCounter()
         {
             _stopWatch = new StopWatch();
             _stopWatch.Seconds = 0;
@@ -80,6 +76,17 @@ namespace TimerUI.ViewModel
             ButtonText = _stopWatch.ButtonText;
         }
 
+        public void ToggleStartAndStopButton(object something)
+        {
+            if (ButtonText == "Start")
+            {
+                StartCounter();
+            }
+            else if (ButtonText == "Stop")
+            {
+                StopCounter();
+            }
+        }
         private void DispatcherTimerTick(object sender, EventArgs e)
         {
             _stopWatch.Seconds += 1;

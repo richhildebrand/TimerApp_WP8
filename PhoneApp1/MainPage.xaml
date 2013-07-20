@@ -55,8 +55,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button Content="{Binding ButtonText, Source={StaticResource ViewModel}}" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding StartButtonClick, Source={StaticResource ViewModel}}" />
-            <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="99,0,0,0" VerticalAlignment="Top" Command="{Binding StopButtonClick, Source={StaticResource ViewModel}}"/>
-
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

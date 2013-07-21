@@ -9,7 +9,7 @@ namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private TimeFormatter _timeFormatter = new TimeFormatter();
+        private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly IStopWatch _stopWatch;
         private string _buttonText = "Start";
         private string _seconds;

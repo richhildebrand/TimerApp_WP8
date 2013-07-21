@@ -9,13 +9,15 @@ namespace TimerUI.ViewModel
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly IStopWatch _stopWatch;
         private string _buttonText = "Start";
-        private int _seconds;
+        private string _seconds;
 
         public MainPageViewModel(IStopWatch stopWatch)
         {
             _stopWatch = stopWatch;
+            Seconds = "0";
             Messenger.Default.Register<StopWatch>(this, OnStopWatchTick);
         }
 
@@ -25,10 +27,10 @@ namespace TimerUI.ViewModel
 
         private void OnStopWatchTick(StopWatch stopWatch)
         {
-            Seconds = stopWatch.Seconds;
+            Seconds = _timeFormatter.FormatSeconds(stopWatch.Seconds);
         }
 
-        public int Seconds
+        public string Seconds
         {
             get { return _seconds; }
             set { _seconds = value; RaisePropertyChanged("Seconds"); }

@@ -4,13 +4,13 @@ using System.Linq;
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
 
-namespace TimerUI
+namespace TimerUI.Voice
 {
     public static class Speech
     {
-        public static SpeechRecognizer recognizer;
-        public static SpeechSynthesizer synthesizer;
-        public static SpeechRecognizerUI recognizerUI;
+        public static SpeechRecognizer Recognizer;
+        public static SpeechSynthesizer Synthesizer;
+        public static SpeechRecognizerUI RecognizerUI;
 
         private static bool initialized = false;
 
@@ -20,17 +20,17 @@ namespace TimerUI
             if (Speech.initialized)
                 return;
 
-            Speech.recognizer = new SpeechRecognizer();
-            Speech.recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
+            Speech.Recognizer = new SpeechRecognizer();
+            Speech.Recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
 
 
-            Speech.synthesizer = new SpeechSynthesizer();
-            Speech.recognizerUI = new SpeechRecognizerUI();
-            Speech.recognizerUI.Settings.ReadoutEnabled = false;
-            Speech.recognizerUI.Settings.ShowConfirmation = false;
+            Speech.Synthesizer = new SpeechSynthesizer();
+            Speech.RecognizerUI = new SpeechRecognizerUI();
+            Speech.RecognizerUI.Settings.ReadoutEnabled = false;
+            Speech.RecognizerUI.Settings.ShowConfirmation = false;
 
-            Speech.recognizerUI.Recognizer.Grammars.AddGrammarFromList("Start", new string[] { "Start" });
-            Speech.recognizerUI.Recognizer.Grammars.AddGrammarFromList("Stop", new string[] { "Stop" });
+            Speech.RecognizerUI.Recognizer.Grammars.AddGrammarFromList("Start", new string[] { "Start" });
+            Speech.RecognizerUI.Recognizer.Grammars.AddGrammarFromList("Stop", new string[] { "Stop" });
 
             // Sets the en-US male voice.
             IEnumerable<VoiceInformation> enUSMaleVoices = from voice in InstalledVoices.All
@@ -38,7 +38,7 @@ namespace TimerUI
                                                            && voice.Language == "en-US"
                                                            select voice;
 
-            Speech.synthesizer.SetVoice(enUSMaleVoices.ElementAt(0));
+            Speech.Synthesizer.SetVoice(enUSMaleVoices.ElementAt(0));
 
             Speech.initialized = true;
         }

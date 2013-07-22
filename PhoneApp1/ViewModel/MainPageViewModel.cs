@@ -31,7 +31,7 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStartCommand(object sender)
         {
-            Speech.recognizerUI.Settings.ExampleText = @"Say 'Start' to start the stopwatch.";
+            Speech.recognizerUI.Settings.ListenText = @"Say 'Start' to start the stopwatch.";
             SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
             if (result.RecognitionResult.Text.Contains("Start"))
             {
@@ -44,7 +44,7 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStopCommand(object sender)
         {
-            Speech.recognizerUI.Settings.ExampleText = @"Say 'Stop' to stop the stopwatch.";
+            Speech.recognizerUI.Settings.ListenText = @"Say 'Stop' to stop the stopwatch.";
             SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
             if (result.RecognitionResult.Text.Contains("Stop"))
             {

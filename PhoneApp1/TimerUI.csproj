@@ -109,6 +109,7 @@
     <Compile Include="TimeFormatter.cs" />
     <Compile Include="ViewModel\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
+    <Compile Include="Voice\VoiceCommander.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

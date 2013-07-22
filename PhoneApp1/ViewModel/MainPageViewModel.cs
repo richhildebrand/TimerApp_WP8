@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using TimerUI.Interfaces;
 using TimerUI.ViewModels.Commands;
 using GalaSoft.MvvmLight;
+using TimerUI.Voice;
 using Windows.Phone.Speech.Recognition;
 using Microsoft.Phone.Controls;
 
@@ -31,15 +32,15 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStartCommand(object sender)
         {
-            Speech.recognizerUI.Recognizer.Grammars["Stop"].Enabled = false;
-            Speech.recognizerUI.Recognizer.Grammars["Start"].Enabled = true;
+            Speech.RecognizerUI.Recognizer.Grammars["Stop"].Enabled = false;
+            Speech.RecognizerUI.Recognizer.Grammars["Start"].Enabled = true;
             
-            Speech.recognizerUI.Settings.ListenText = @"Say 'Start' to start the stopwatch.";
-            SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
+            Speech.RecognizerUI.Settings.ListenText = @"Say 'Start' to start the stopwatch.";
+            SpeechRecognitionUIResult result = await Speech.RecognizerUI.RecognizeWithUIAsync();
             if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded && result.RecognitionResult.Text.Contains("Start"))
             {
                 _stopWatch.Start();
-                await Speech.synthesizer.SpeakTextAsync("Timer Started");
+                await Speech.Synthesizer.SpeakTextAsync("Timer Started");
                 ListenForStopCommand(sender);
             }
             else { ListenForStartCommand(sender); }
@@ -47,15 +48,15 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStopCommand(object sender)
         {
-            Speech.recognizerUI.Recognizer.Grammars["Stop"].Enabled = true;
-            Speech.recognizerUI.Recognizer.Grammars["Start"].Enabled = false;
+            Speech.RecognizerUI.Recognizer.Grammars["Stop"].Enabled = true;
+            Speech.RecognizerUI.Recognizer.Grammars["Start"].Enabled = false;
 
-            Speech.recognizerUI.Settings.ListenText = @"Say 'Stop' to stop the stopwatch.";
-            SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
+            Speech.RecognizerUI.Settings.ListenText = @"Say 'Stop' to stop the stopwatch.";
+            SpeechRecognitionUIResult result = await Speech.RecognizerUI.RecognizeWithUIAsync();
             if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded && result.RecognitionResult.Text.Contains("Stop"))
             {
                 _stopWatch.Stop();
-                await Speech.synthesizer.SpeakTextAsync("Timer stopped at " + Seconds + " seconds.");
+                await Speech.Synthesizer.SpeakTextAsync("Timer stopped at " + Seconds + " seconds.");
             }
             else { ListenForStopCommand(sender); }
         }

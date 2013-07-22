@@ -20,7 +20,7 @@ namespace TimerUI
         public void MainPage_Click(object sender, EventArgs e)
         {
             // TODO: Implement this method
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

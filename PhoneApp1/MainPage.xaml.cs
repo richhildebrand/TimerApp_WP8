@@ -30,7 +30,7 @@ namespace TimerUI
 
         private void Settings_Click(object sender, EventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TimeoutSettingsPage.xml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("/TimeoutSettingsPage.xaml", UriKind.Relative));
         }
 
         private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)

@@ -16,8 +16,6 @@ namespace TimerUI.ViewModel
         private string _buttonText = "Start";
         private string _seconds;
 
-        
-
         public MainPageViewModel(IStopWatch stopWatch)
         {
             _stopWatch = stopWatch;

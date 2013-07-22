@@ -52,7 +52,7 @@ namespace TimerUI.ViewModel
 
             Speech.recognizerUI.Settings.ListenText = @"Say 'Stop' to stop the stopwatch.";
             SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
-            if (result.RecognitionResult.Text.Contains("Stop"))
+            if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded && result.RecognitionResult.Text.Contains("Stop"))
             {
                 _stopWatch.Stop();
                 await Speech.synthesizer.SpeakTextAsync("Timer stopped at " + Seconds + " seconds.");

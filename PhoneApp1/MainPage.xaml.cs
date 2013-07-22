@@ -15,9 +15,13 @@ namespace TimerUI
             //BuildLocalizedApplicationBar();
         }
 
+        private void Settings_Click(object sender, EventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/TimeoutSettingsPage.xml", UriKind.Relative));
+        }
+
         private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            
         }
 
         private void StopButton_Click(object sender, System.Windows.RoutedEventArgs e)

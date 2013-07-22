@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Windows;
 using Telerik.Windows.Controls;
+using TimerUI.Interfaces;
 using TimerUI.ViewModel;
+using TimerUI.Voice;
 
 namespace TimerUI.SpeechHandlers
 {
-    public class StartSpeechHandler : ISpeechInputHandler
+    public class StartAndStopSpeechHandler : ISpeechInputHandler
     {
         private const string START_TIMER = "Start";
         private const string STOP_TIMER = "Stop";
@@ -20,18 +22,16 @@ namespace TimerUI.SpeechHandlers
         {
             if (string.Compare(START_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-
-                var mainPageViewModel = new MainPageViewModel();
-                var sender = new Object();
-                mainPageViewModel.ToggleStartAndStopButton(sender);
+                var stopWatch = new StopWatch();
+                stopWatch.Start();
                 Telerik.Windows.Controls.SpeechManager.StartListening();
 
             }
 
             if (string.Compare(STOP_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                //RadSlideView sv = target as RadSlideView;
-                //sv.MoveToPreviousItem();
+                var stopWatch = new StopWatch();
+                stopWatch.Stop();
                 Telerik.Windows.Controls.SpeechManager.StartListening();
             }
         }

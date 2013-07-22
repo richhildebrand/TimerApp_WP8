@@ -98,7 +98,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpeechHandlers\StartSpeechHandler.cs" />
+    <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
     <Compile Include="Voice\Speech.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

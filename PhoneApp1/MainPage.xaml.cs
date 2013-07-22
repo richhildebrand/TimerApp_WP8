@@ -11,23 +11,10 @@ namespace TimerUI
         public MainPage()
         {
             InitializeComponent();
-            //this.Loaded += new RoutedEventHandler(SlideView_Loaded);
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
-
-
-        //void SlideView_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    string[] uris = new string[8];
-        //    for (int i = 0; i < 8; i++)
-        //    {
-        //        uris[i] = "Images/transitionsNew-" + (i + 1) + ".png";
-        //    }
-
-        //    xSlideView.DataContext = uris;
-        //}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -40,8 +27,6 @@ namespace TimerUI
             Telerik.Windows.Controls.SpeechManager.Reset();
             base.OnNavigatedFrom(e);
         }
-
-
 
         private void Settings_Click(object sender, EventArgs e)
         {

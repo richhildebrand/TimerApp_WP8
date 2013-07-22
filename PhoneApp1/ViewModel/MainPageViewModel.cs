@@ -31,9 +31,12 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStartCommand(object sender)
         {
+            Speech.recognizerUI.Recognizer.Grammars["Stop"].Enabled = false;
+            Speech.recognizerUI.Recognizer.Grammars["Start"].Enabled = true;
+            
             Speech.recognizerUI.Settings.ListenText = @"Say 'Start' to start the stopwatch.";
             SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
-            if (result.RecognitionResult.Text.Contains("Start"))
+            if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded && result.RecognitionResult.Text.Contains("Start"))
             {
                 _stopWatch.Start();
                 await Speech.synthesizer.SpeakTextAsync("Timer Started");
@@ -44,6 +47,9 @@ namespace TimerUI.ViewModel
 
         private async void ListenForStopCommand(object sender)
         {
+            Speech.recognizerUI.Recognizer.Grammars["Stop"].Enabled = true;
+            Speech.recognizerUI.Recognizer.Grammars["Start"].Enabled = false;
+
             Speech.recognizerUI.Settings.ListenText = @"Say 'Stop' to stop the stopwatch.";
             SpeechRecognitionUIResult result = await Speech.recognizerUI.RecognizeWithUIAsync();
             if (result.RecognitionResult.Text.Contains("Stop"))

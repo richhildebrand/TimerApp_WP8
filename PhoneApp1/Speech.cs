@@ -21,12 +21,16 @@ namespace TimerUI
                 return;
 
             Speech.recognizer = new SpeechRecognizer();
-            recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
+            Speech.recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
+
 
             Speech.synthesizer = new SpeechSynthesizer();
             Speech.recognizerUI = new SpeechRecognizerUI();
             Speech.recognizerUI.Settings.ReadoutEnabled = false;
             Speech.recognizerUI.Settings.ShowConfirmation = false;
+
+            Speech.recognizerUI.Recognizer.Grammars.AddGrammarFromList("Start", new string[] { "Start" });
+            Speech.recognizerUI.Recognizer.Grammars.AddGrammarFromList("Stop", new string[] { "Stop" });
 
             // Sets the en-US male voice.
             IEnumerable<VoiceInformation> enUSMaleVoices = from voice in InstalledVoices.All

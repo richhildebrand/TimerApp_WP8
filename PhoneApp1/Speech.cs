@@ -24,6 +24,7 @@ namespace TimerUI
             Speech.synthesizer = new SpeechSynthesizer();
             Speech.recognizerUI = new SpeechRecognizerUI();
             Speech.recognizerUI.Settings.ReadoutEnabled = false;
+            Speech.recognizerUI.Settings.ShowConfirmation = false;
 
             // Sets the en-US male voice.
             IEnumerable<VoiceInformation> enUSMaleVoices = from voice in InstalledVoices.All

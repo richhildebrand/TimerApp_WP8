@@ -21,6 +21,8 @@ namespace TimerUI
                 return;
 
             Speech.recognizer = new SpeechRecognizer();
+            recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
+
             Speech.synthesizer = new SpeechSynthesizer();
             Speech.recognizerUI = new SpeechRecognizerUI();
             Speech.recognizerUI.Settings.ReadoutEnabled = false;

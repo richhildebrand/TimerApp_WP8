@@ -18,21 +18,25 @@ namespace TimerUI.SpeechHandlers
             return true;
         }
 
+        private StopWatch _stopWatch;
+
+        public StartAndStopSpeechHandler()
+        {
+            _stopWatch = new StopWatch();
+        }
+
         public void HandleInput(FrameworkElement target, string input)
         {
             if (string.Compare(START_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                var stopWatch = new StopWatch();
-                stopWatch.Start();
+                _stopWatch.Start();
                 Telerik.Windows.Controls.SpeechManager.StartListening();
-
             }
 
             //Make this work.....
             if (string.Compare(STOP_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                var stopWatch = new StopWatch();
-                stopWatch.Stop();
+                _stopWatch.Stop();
                 Telerik.Windows.Controls.SpeechManager.StartListening();
             }
         }

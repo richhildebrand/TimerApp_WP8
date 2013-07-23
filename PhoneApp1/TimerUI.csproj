@@ -99,6 +99,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
+    <Compile Include="ViewModel\GlobalViewModelLocator.cs" />
     <Compile Include="Voice\Speech.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

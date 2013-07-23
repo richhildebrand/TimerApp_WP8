@@ -12,12 +12,8 @@ namespace TimerUI.SpeechHandlers
     {
         private const string START_TIMER = "Start";
         private const string STOP_TIMER = "Stop";
-
         private StopWatch _stopWatch;
 
-        //Check my syntax here if it happens to break. I did this during the css3 summit because
-        //I was bored. I also did not have a chance to test it because my emulator doesn't work
-        //and I don't have the cable for my phone. I'm going to check this when I get home.
         public StartAndStopSpeechHandler(StopWatch stopWatch)
         {
             _stopWatch = stopWatch;
@@ -38,7 +34,6 @@ namespace TimerUI.SpeechHandlers
                 Telerik.Windows.Controls.SpeechManager.StartListening();
             }
 
-            //Make this work.....
             if (string.Compare(STOP_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 _stopWatch.Stop();

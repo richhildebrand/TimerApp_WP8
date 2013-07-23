@@ -28,6 +28,7 @@ namespace TimerUI.SpeechHandlers
 
             }
 
+            //Make this work.....
             if (string.Compare(STOP_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
                 var stopWatch = new StopWatch();

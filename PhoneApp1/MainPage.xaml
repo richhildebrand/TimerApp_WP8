@@ -38,7 +38,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button Content="{Binding ButtonText, Source={StaticResource ViewModel}}" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding StartButtonClick, Source={StaticResource ViewModel}}" />
-            <Button Content="Activate voice commands"  HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding ActivateVoiceCommandsClick, Source={StaticResource ViewModel}}" />
             <telerikSpeech:SpeechManager.SpeechMetadata>
                 <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" InputIdentificationToken="MainContent">
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>

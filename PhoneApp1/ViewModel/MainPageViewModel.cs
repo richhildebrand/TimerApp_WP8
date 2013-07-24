@@ -12,7 +12,6 @@ namespace TimerUI.ViewModel
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly IStopWatch _stopWatch;
-        private readonly VoiceCommander _voiceCommander;
         private string _buttonText = "Start";
         private string _seconds;
 
@@ -22,7 +21,6 @@ namespace TimerUI.ViewModel
             Seconds = "0";
             Messenger.Default.Register<StopWatch>(this, OnStopWatchTick);
             Speech.Initialize();
-            this._voiceCommander = new VoiceCommander(_stopWatch);
         }
 
         public MainPageViewModel() : this(new StopWatch())
@@ -44,11 +42,6 @@ namespace TimerUI.ViewModel
         public ICommand StartButtonClick
         {
             get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
-        }
-
-        public ICommand ActivateVoiceCommandsClick
-        {
-            get { return new DelegateCommand(_voiceCommander.ListenForStartCommand, CanExecute); }
         }
 
         public bool CanExecute(object returnsTrue)

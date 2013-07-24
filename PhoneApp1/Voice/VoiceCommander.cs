@@ -14,6 +14,7 @@ namespace TimerUI.Voice
             _stopWatch = stopWatch;
         }
 
+        //Keeping this class around so that we can hopefully steal the Grammer stuff from it.
         public async void ListenForStartCommand(object sender)
         {
             Speech.RecognizerUI.Recognizer.Grammars["Stop"].Enabled = false;

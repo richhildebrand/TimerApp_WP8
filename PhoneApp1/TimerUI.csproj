@@ -98,8 +98,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Messages\StopwatchTickEvent.cs" />
     <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
-    <Compile Include="ViewModel\GlobalViewModelLocator.cs" />
     <Compile Include="Voice\Speech.cs" />
     <Compile Include="StopWatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,7 +115,7 @@
     </Compile>
     <Compile Include="ViewModel\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="ViewModel\TimeoutSettingsViewModel.cs" />
+    <Compile Include="ViewModel\TimeoutSettingsPageViewModel.cs" />
     <Compile Include="Voice\VoiceCommander.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,8 +167,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.WP8">
-      <HintPath>libs\GalaSoft.MvvmLight.WP8.dll</HintPath>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>libs\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Extensions">
+      <HintPath>libs\Caliburn.Micro.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Toolkit.Testing">
       <HintPath>..\packages\WPToolkitTestFx.4.2012.11.14\lib\wp8\Microsoft.Phone.Toolkit.Testing.dll</HintPath>

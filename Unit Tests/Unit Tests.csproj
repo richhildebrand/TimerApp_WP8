@@ -161,6 +161,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\PhoneApp1\libs\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Extensions">
+      <HintPath>..\PhoneApp1\libs\Caliburn.Micro.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.WP8, Version=4.1.24.17387, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\PhoneApp1\libs\GalaSoft.MvvmLight.WP8.dll</HintPath>

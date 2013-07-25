@@ -1,42 +1,57 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Messaging;
+using Caliburn.Micro;
 using TimerUI.Interfaces;
+using TimerUI.Messages;
 using TimerUI.ViewModels.Commands;
-using GalaSoft.MvvmLight;
 using TimerUI.Voice;
 
 namespace TimerUI.ViewModel
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
+        private readonly IEventAggregator _messenger;
         private readonly IStopWatch _stopWatch;
-        private string _buttonText = "Start";
+
         private string _seconds;
+        private string _buttonText;
 
         public MainPageViewModel(IStopWatch stopWatch)
         {
             _stopWatch = stopWatch;
             Seconds = "0";
-            Messenger.Default.Register<StopWatch>(this, OnStopWatchTick);
+            ButtonText = "Start";
+
             Speech.Initialize();
+
+            Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
+            _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
+                                                                     .FirstOrDefault() as IEventAggregator;
+            _messenger.Subscribe(this);
         }
 
         public MainPageViewModel() : this(new StopWatch())
         {
         }
 
-        public string Seconds
+        public void Handle(StopwatchTickEvent stopwatchTick)
         {
-            get { return _seconds; }
-            set { _seconds = value; RaisePropertyChanged("Seconds"); }
+            Seconds = _timeFormatter.FormatSeconds(stopwatchTick.Seconds);
+        }
+
+        public string Seconds
+        { 
+            get { return this._seconds; }
+            set { _seconds = value; NotifyOfPropertyChange(() => Seconds); }
         }
 
         public string ButtonText
         {
-            get { return _buttonText; }
-            set { _buttonText = value; RaisePropertyChanged("ButtonText"); }
+            get { return this._buttonText; }
+            set { _buttonText = value; NotifyOfPropertyChange(() => ButtonText); }
         }
 
         public ICommand StartButtonClick
@@ -44,14 +59,9 @@ namespace TimerUI.ViewModel
             get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
         }
 
-        public bool CanExecute(object returnsTrue)
+        public bool CanExecute (object returnsTrue)
         {
             return true;
-        }
-
-        private void OnStopWatchTick(StopWatch stopWatch)
-        {
-            Seconds = _timeFormatter.FormatSeconds(stopWatch.Seconds);
         }
 
         public void ToggleStartAndStopButton(object sender)

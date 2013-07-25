@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace TimerUI.ViewModel
 {
-    public class TimeoutSettingsViewModel
+    public class TimeoutSettingsPageViewModel
     {
         public string VoiceTimeout { get; set; }
 
-        public TimeoutSettingsViewModel()
+        public TimeoutSettingsPageViewModel()
         {
             //TODO: move to app load
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("VoiceTimeout"))

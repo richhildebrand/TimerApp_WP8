@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Navigation;
+using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 
 namespace TimerUI
@@ -11,9 +13,6 @@ namespace TimerUI
         public MainPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

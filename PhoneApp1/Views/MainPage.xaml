@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
     xmlns:telerikSpeech="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Speech"
     xmlns:speech="clr-namespace:TimerUI.SpeechHandlers"
     shell:SystemTray.IsVisible="True">
@@ -25,9 +26,9 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button x:Name="ToggleStartAndStopButton" Content="{Binding ButtonText}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <Button x:Name="NavigateToSettingsPage" VerticalAlignment="Bottom">
+            <!--<Button x:Name="NavigateToSettingsPage" VerticalAlignment="Bottom">
                 <Image Source="/Images/appbar.settings.png"></Image>
-            </Button>
+            </Button>-->
             <telerikSpeech:SpeechManager.SpeechMetadata>
                 <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" InputIdentificationToken="MainContent">
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>
@@ -40,6 +41,13 @@
                 </telerikSpeech:SpeechRecognitionMetadata>
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
+        <bab:BindableAppBar x:Name="AppBar">
+            <bab:BindableAppBarButton x:Name="NavigateToSettingsPage"
+                                        Text="{Binding AddItemText}"
+                                        IconUri="{Binding Icon}"
+                                        Visibility="{Binding IsVisible}"
+                                        />
+        </bab:BindableAppBar>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
 

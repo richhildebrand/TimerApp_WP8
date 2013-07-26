@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using Caliburn.Micro;
+using Caliburn.Micro.BindableAppBar;
 using TimerUI.ViewModels;
 
 namespace TimerUI
@@ -16,7 +18,10 @@ namespace TimerUI
             container.RegisterPhoneServices(RootFrame);
             container.PerRequest<MainPageViewModel>();
             container.PerRequest<SettingsPageViewModel>();
-
+            ConventionManager.AddElementConvention<BindableAppBarButton>(
+            Control.IsEnabledProperty, "DataContext", "Click");
+            ConventionManager.AddElementConvention<BindableAppBarMenuItem>(
+            Control.IsEnabledProperty, "DataContext", "Click");
             AddCustomConventions();
         }
 

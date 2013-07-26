@@ -17,6 +17,9 @@ namespace TimerUI.ViewModels
 
         private string _seconds;
         private string _buttonText;
+        private string _addItemText;
+        private Uri _icon;
+        private bool _isVisible;
 
         public MainPageViewModel(INavigationService navigationService)
         {
@@ -24,6 +27,9 @@ namespace TimerUI.ViewModels
             _stopWatch = new StopWatch();
             Seconds = "0";
             ButtonText = "Start";
+            AddItemText = "Timeout Settings";
+            Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
+            IsVisible = true; 
 
             Speech.Initialize();
 
@@ -53,6 +59,24 @@ namespace TimerUI.ViewModels
         {
             get { return this._buttonText; }
             set { _buttonText = value; NotifyOfPropertyChange(() => ButtonText); }
+        }
+
+        public string AddItemText
+        {
+            get { return _addItemText; }
+            set { _addItemText = value; NotifyOfPropertyChange(() => AddItemText); }
+        }
+
+        public Uri Icon
+        {
+            get { return _icon; }
+            set { _icon = value; NotifyOfPropertyChange(() => Icon); }
+        }
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set { _isVisible = value; NotifyOfPropertyChange(() => IsVisible); }
         }
 
         public void ToggleStartAndStopButton(object sender)

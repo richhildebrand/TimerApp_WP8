@@ -174,8 +174,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.1.4.1\lib\wp8\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Micro.BindableAppBar">
-      <HintPath>..\packages\Caliburn.Micro.BindableAppBar.1.0.4.0\lib\wp80\Caliburn.Micro.BindableAppBar.dll</HintPath>
+    <Reference Include="Caliburn.Micro.BindableAppBar, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Caliburn.Micro.BindableAppBar.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Extensions, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

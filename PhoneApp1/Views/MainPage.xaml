@@ -26,9 +26,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button x:Name="ToggleStartAndStopButton" Content="{Binding ButtonText}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-            <!--<Button x:Name="NavigateToSettingsPage" VerticalAlignment="Bottom">
-                <Image Source="/Images/appbar.settings.png"></Image>
-            </Button>-->
             <telerikSpeech:SpeechManager.SpeechMetadata>
                 <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" InputIdentificationToken="MainContent">
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>
@@ -41,6 +38,8 @@
                 </telerikSpeech:SpeechRecognitionMetadata>
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
+        <!-- I like this way because it gives the more Win Phone 8 Feel. Thoughts?-->
+        <!-- We can also add the menu items instead of icons if you'd like-->
         <bab:BindableAppBar x:Name="AppBar">
             <bab:BindableAppBarButton x:Name="NavigateToSettingsPage"
                                         Text="{Binding AddItemText}"

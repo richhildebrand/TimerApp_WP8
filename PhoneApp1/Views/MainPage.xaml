@@ -39,7 +39,10 @@
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
         <!-- I like this way because it gives the more Win Phone 8 Feel. Thoughts?-->
+        <!-- For sure! I just couldn't figure out how to do this! -->
+        
         <!-- We can also add the menu items instead of icons if you'd like-->
+        <!-- I like icons in general, but you actually use the phone so I'll defer to you -->
         <bab:BindableAppBar x:Name="AppBar">
             <bab:BindableAppBarButton x:Name="NavigateToSettingsPage"
                                         Text="{Binding AddItemText}"

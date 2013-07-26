@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Windows;
 using Telerik.Windows.Controls;
-using TimerUI.Interfaces;
-using TimerUI.ViewModel;
-using TimerUI.Voice;
 
 namespace TimerUI.SpeechHandlers
 {

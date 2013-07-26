@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Windows;
-using System.Windows.Navigation;
-using Caliburn.Micro;
 using Microsoft.Phone.Controls;
 
-namespace TimerUI
+namespace TimerUI.Views
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -13,32 +10,6 @@ namespace TimerUI
         public MainPage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            Telerik.Windows.Controls.SpeechManager.StartListening();
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            Telerik.Windows.Controls.SpeechManager.Reset();
-            base.OnNavigatedFrom(e);
-        }
-
-        private void Settings_Click(object sender, EventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("/TimeoutSettingsPage.xaml", UriKind.Relative));
-        }
-
-        private void StartButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-        }
-
-        private void StopButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
         }
 
         // Sample code for building a localized ApplicationBar

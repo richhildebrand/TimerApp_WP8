@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using Caliburn.Micro;
 using TimerUI.Interfaces;
 using TimerUI.Messages;
-using TimerUI.ViewModels.Commands;
 using TimerUI.Voice;
 
-namespace TimerUI.ViewModel
+namespace TimerUI.ViewModels
 {
     public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>
     {
@@ -19,9 +17,9 @@ namespace TimerUI.ViewModel
         private string _seconds;
         private string _buttonText;
 
-        public MainPageViewModel(IStopWatch stopWatch)
+        public MainPageViewModel(INavigationService nav)
         {
-            _stopWatch = stopWatch;
+            _stopWatch = new StopWatch();
             Seconds = "0";
             ButtonText = "Start";
 
@@ -31,10 +29,6 @@ namespace TimerUI.ViewModel
             _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
             _messenger.Subscribe(this);
-        }
-
-        public MainPageViewModel() : this(new StopWatch())
-        {
         }
 
         public void Handle(StopwatchTickEvent stopwatchTick)
@@ -52,11 +46,6 @@ namespace TimerUI.ViewModel
         {
             get { return this._buttonText; }
             set { _buttonText = value; NotifyOfPropertyChange(() => ButtonText); }
-        }
-
-        public ICommand StartButtonClick
-        {
-            get { return new DelegateCommand(ToggleStartAndStopButton, CanExecute); }
         }
 
         public bool CanExecute (object returnsTrue)

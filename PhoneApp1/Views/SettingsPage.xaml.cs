@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace TimerUI.Views
 {
-    public partial class TimeoutSettingsPage
+    public partial class SettingsPage
     {
-        public TimeoutSettingsPage()
+        public SettingsPage()
         {
             InitializeComponent();
         }

@@ -11,14 +11,16 @@ namespace TimerUI.ViewModels
     public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
+        private readonly INavigationService _navigationService;
         private readonly IEventAggregator _messenger;
         private readonly IStopWatch _stopWatch;
 
         private string _seconds;
         private string _buttonText;
 
-        public MainPageViewModel(INavigationService nav)
+        public MainPageViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             _stopWatch = new StopWatch();
             Seconds = "0";
             ButtonText = "Start";
@@ -29,6 +31,11 @@ namespace TimerUI.ViewModels
             _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
             _messenger.Subscribe(this);
+        }
+
+        public void NavigateToSettingsPage()
+        {
+            _navigationService.UriFor<SettingsPageViewModel>().Navigate();
         }
 
         public void Handle(StopwatchTickEvent stopwatchTick)

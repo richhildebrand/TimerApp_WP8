@@ -15,6 +15,7 @@ namespace TimerUI
 
             container.RegisterPhoneServices(RootFrame);
             container.PerRequest<MainPageViewModel>();
+            container.PerRequest<SettingsPageViewModel>();
 
             AddCustomConventions();
         }

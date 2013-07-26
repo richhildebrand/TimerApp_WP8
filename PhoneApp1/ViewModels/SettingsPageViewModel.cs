@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace TimerUI.ViewModels
 {
-    public class TimeoutSettingsPageViewModel
+    public class SettingsPageViewModel
     {
         public string VoiceTimeout { get; set; }
 
-        public TimeoutSettingsPageViewModel()
+        public SettingsPageViewModel()
         {
             //TODO: move to app load
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("VoiceTimeout"))

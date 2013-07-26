@@ -48,11 +48,6 @@ namespace TimerUI.ViewModels
             set { _buttonText = value; NotifyOfPropertyChange(() => ButtonText); }
         }
 
-        public bool CanExecute (object returnsTrue)
-        {
-            return true;
-        }
-
         public void ToggleStartAndStopButton(object sender)
         {
             if (ButtonText == "Start")

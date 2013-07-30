@@ -25,7 +25,7 @@ namespace TimerUI.ViewModels
         {
             _navigationService = navigationService;
             _stopWatch = new StopWatch();
-            Seconds = "0";
+            Time = "0:00";
             ButtonText = "Start";
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
@@ -46,13 +46,13 @@ namespace TimerUI.ViewModels
 
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
-            Seconds = _timeFormatter.FormatSeconds(stopwatchTick.Seconds);
+            Time = _timeFormatter.FormatTime(stopwatchTick.Seconds);
         }
 
-        public string Seconds
+        public string Time
         { 
             get { return this._seconds; }
-            set { _seconds = value; NotifyOfPropertyChange(() => Seconds); }
+            set { _seconds = value; NotifyOfPropertyChange(() => Time); }
         }
 
         public string ButtonText

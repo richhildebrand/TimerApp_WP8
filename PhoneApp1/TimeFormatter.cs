@@ -8,7 +8,7 @@ namespace TimerUI
 {
     public class TimeFormatter
     {
-        public string FormatSeconds(int seconds)
+        public string FormatTime(int seconds)
         {
             if (seconds >= 60)
             {

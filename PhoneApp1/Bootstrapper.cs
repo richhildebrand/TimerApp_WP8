@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Windows.Controls;
 using Caliburn.Micro;
 using Caliburn.Micro.BindableAppBar;
@@ -14,6 +15,11 @@ namespace TimerUI
         protected override void Configure()
         {
             container = new PhoneContainer();
+
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("VoiceTimeout"))
+            {
+                IsolatedStorageSettings.ApplicationSettings.Add("VoiceTimeout", TimeSpan.FromMinutes(5));
+            }
 
             container.RegisterPhoneServices(RootFrame);
             container.PerRequest<MainPageViewModel>();

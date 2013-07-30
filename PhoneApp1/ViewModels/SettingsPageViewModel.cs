@@ -6,20 +6,21 @@ namespace TimerUI.ViewModels
 {
     public class SettingsPageViewModel
     {
-        public string VoiceTimeout { get; set; }
+        private int _voiceTimeout;
+
+        public int VoiceTimeout { 
+            get { return _voiceTimeout; }
+            set
+            {
+                _voiceTimeout = value;
+                IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"] = TimeSpan.FromMinutes(value);
+            }
+        }
 
         public SettingsPageViewModel()
         {
-            //TODO: move to app load
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains("VoiceTimeout"))
-            {
-                IsolatedStorageSettings.ApplicationSettings.Add("VoiceTimeout", TimeSpan.FromMinutes(5));
-            }
-            VoiceTimeout = IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"].ToString();
-        }
-
-        public void Cleanup()
-        {
+            var voiceTimeoutSetting = (TimeSpan)IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"];
+            _voiceTimeout = voiceTimeoutSetting.Minutes;
         }
     }
 }

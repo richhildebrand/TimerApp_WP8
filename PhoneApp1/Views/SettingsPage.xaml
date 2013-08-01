@@ -38,12 +38,11 @@
                     MaxValue="{Binding MaxVoiceTimeout, Mode=TwoWay}" 
                     Grid.Row="1" 
                     HorizontalAlignment="Left" />
-            <!--<Slider
-                    IsHitTestVisible="False" 
+            <Slider
                     Minimum="{Binding MinVoiceTimeout, Mode=TwoWay}" 
                     Maximum="{Binding MaxVoiceTimeout, Mode=TwoWay}" 
                     Value="{Binding ElementName=VoiceTimeoutInputBox, Path=Value, Mode=TwoWay}"  
-                    Grid.Row="2"/>-->
+                    Grid.Row="2"/>
         </Grid>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>

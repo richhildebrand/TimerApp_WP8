@@ -1,12 +1,16 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using Caliburn.Micro;
 
 namespace TimerUI.ViewModels
 {
-    public class SettingsPageViewModel
+    public class SettingsPageViewModel : PropertyChangedBase
     {
         private int _voiceTimeout;
+
+        public int MinVoiceTimeout { get { return 1; } }
+        public int MaxVoiceTimeout { get { return 15; } }
 
         public int VoiceTimeout { 
             get { return _voiceTimeout; }
@@ -14,6 +18,7 @@ namespace TimerUI.ViewModels
             {
                 _voiceTimeout = value;
                 IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"] = TimeSpan.FromMinutes(value);
+                NotifyOfPropertyChange(() => VoiceTimeout);
             }
         }
 

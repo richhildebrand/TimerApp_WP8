@@ -33,8 +33,7 @@
             <telerikInput:RadNumericUpDown
                     Width="425" 
                     x:Name="VoiceTimeoutInputBox" 
-                    Change="{Binding VoiceTimeout}" 
-                    Value="{Binding VoiceTimeout}"
+                    Value="{Binding VoiceTimeout, Mode=TwoWay}"
                     MinValue="{Binding MinVoiceTimeout, Mode=TwoWay}" 
                     MaxValue="{Binding MaxVoiceTimeout, Mode=TwoWay}" 
                     Grid.Row="1" 

@@ -12,13 +12,13 @@ namespace TimerUI
         private readonly DispatcherTimer _timer;
         private readonly IEventAggregator _messenger;
 
-        public int Seconds { get; set; }
+        public int Miliseconds { get; set; }
 
         public StopWatch()
         {
             _timer = new DispatcherTimer();
             _timer.Tick += OnEachTick;
-            _timer.Interval = new TimeSpan(0, 0, 1);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
@@ -27,8 +27,8 @@ namespace TimerUI
 
         private void OnEachTick(object sender, EventArgs e)
         {
-            Seconds += 1;
-            _messenger.Publish(new StopwatchTickEvent(Seconds));
+            Miliseconds += 10;
+            _messenger.Publish(new StopwatchTickEvent(Miliseconds));
         }
 
         public void Start()

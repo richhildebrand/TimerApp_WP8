@@ -41,7 +41,7 @@ namespace TimerUI.Voice
             if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded && result.RecognitionResult.Text.Contains("Stop"))
             {
                 _stopWatch.Stop();
-                await Speech.Synthesizer.SpeakTextAsync("Timer stopped at " + _stopWatch.Seconds + " seconds.");
+                await Speech.Synthesizer.SpeakTextAsync("Timer stopped at " + _stopWatch.Miliseconds + " seconds.");
             }
             else { ListenForStopCommand(sender); }
         }

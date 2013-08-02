@@ -4,7 +4,7 @@ namespace TimerUI.Interfaces
 {
     public interface IStopWatch
     {
-        int Seconds { get; set; }
+        int Miliseconds { get; set; }
         void Start();
         void Stop();
     }

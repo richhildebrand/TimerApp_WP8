@@ -5,11 +5,11 @@ namespace TimerUI.Messages
 {
     public class StopwatchTickEvent
     {
-        public long Miliseconds { get; set; }
+        public long Milliseconds { get; set; }
 
-        public StopwatchTickEvent(long miliseconds)
+        public StopwatchTickEvent(long milliseconds)
         {
-            Miliseconds = miliseconds;
+            Milliseconds = milliseconds;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace TimerUI.ViewModels
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
-        private string miliseconds;
+        private string milliseconds;
         private string _buttonText;
         private string _addItemText;
         private Uri _icon;
@@ -24,7 +24,7 @@ namespace TimerUI.ViewModels
         {
             _navigationService = navigationService;
             _stopWatch = new CustomStopwatch();
-            Miliseconds = "0";
+            Milliseconds = "0";
             ButtonText = "Start";
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
@@ -45,13 +45,13 @@ namespace TimerUI.ViewModels
 
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
-            Miliseconds = _timeFormatter.FormatMiliseconds(stopwatchTick.Miliseconds);
+            Milliseconds = _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
         }
 
-        public string Miliseconds
+        public string Milliseconds
         { 
-            get { return this.miliseconds; }
-            set { miliseconds = value; NotifyOfPropertyChange(() => Miliseconds); }
+            get { return this.milliseconds; }
+            set { milliseconds = value; NotifyOfPropertyChange(() => Milliseconds); }
         }
 
         public string ButtonText

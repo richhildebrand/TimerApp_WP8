@@ -5,15 +5,15 @@ namespace TimerUI
 {
     public class TimeFormatter
     {
-        public string FormatMiliseconds(long miliseconds)
+        public string FormatMilliseconds(long milliseconds)
         {
             string displayTime;
-            TimeSpan t = TimeSpan.FromMilliseconds(miliseconds);
-            if (miliseconds < 1000)
+            TimeSpan t = TimeSpan.FromMilliseconds(milliseconds);
+            if (milliseconds < 1000)
             {
-                displayTime = miliseconds.ToString();
+                displayTime = milliseconds.ToString();
             }
-            else if (miliseconds < 60000)
+            else if (milliseconds < 60000)
             {
                 displayTime = string.Format("{0:D1}:{1:D1}", t.Seconds, t.Milliseconds);
             }

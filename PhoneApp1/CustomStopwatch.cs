@@ -14,7 +14,7 @@ namespace TimerUI
         private readonly DispatcherTimer _timerWithEvenHooks;
         private readonly IEventAggregator _messenger;
 
-        public long Miliseconds { get; set; }
+        public long Milliseconds { get; set; }
 
         public CustomStopwatch()
         {
@@ -30,8 +30,8 @@ namespace TimerUI
 
         private void OnEachTick(object sender, EventArgs e)
         {
-            Miliseconds = _accurateTimer.ElapsedMilliseconds;
-            _messenger.Publish(new StopwatchTickEvent(Miliseconds));
+            Milliseconds = _accurateTimer.ElapsedMilliseconds;
+            _messenger.Publish(new StopwatchTickEvent(Milliseconds));
         }
 
         public void Start()

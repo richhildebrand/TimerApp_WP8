@@ -22,7 +22,7 @@ namespace TimerUI
             }
             else
             {
-                displayTime = string.Format("" + t.Minutes + ":" + t.Seconds + ":" + t.Milliseconds);
+                displayTime = string.Format("{0:D1}:{1:D2}:{2:D2}", t.Minutes, t.Seconds, t.Milliseconds);
             }
             return StripLastZero(displayTime);
         }

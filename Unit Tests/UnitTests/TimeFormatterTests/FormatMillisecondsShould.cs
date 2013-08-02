@@ -26,12 +26,21 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
         }
 
         [TestMethod]
-        public void Return30WhenGiven30Milliseconds()
+        public void Return30WhenGiven300Milliseconds()
         {
             var milliseconds = 300;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
             Assert.AreEqual("30", actualValue);
+        }
+
+        [TestMethod]
+        public void Return1SecondGiven1000Milliseconds()
+        {
+            var milliseconds = 1000;
+            var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
+
+            Assert.AreEqual("1:0", actualValue);
         }
     }
 }

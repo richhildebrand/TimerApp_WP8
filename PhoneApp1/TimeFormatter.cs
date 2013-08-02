@@ -31,7 +31,7 @@ namespace TimerUI
 
         private string StripLastZero(string displayTimeWithExtraZero)
         {
-            if (displayTimeWithExtraZero != "0")
+            if (!displayTimeWithExtraZero.Contains(":0") && displayTimeWithExtraZero != "0")
             {
                 return displayTimeWithExtraZero.Substring(0, displayTimeWithExtraZero.Length - 1);
             }

@@ -42,5 +42,32 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
 
             Assert.AreEqual("1:0", actualValue);
         }
+
+        [TestMethod]
+        public void Return1Second30MillisecondsGiven1300Milliseconds()
+        {
+            var milliseconds = 1300;
+            var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
+
+            Assert.AreEqual("1:30", actualValue);
+        }
+
+        [TestMethod]
+        public void Return1MinGiven60000Milliseconds()
+        {
+            var milliseconds = 60000;
+            var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
+
+            Assert.AreEqual("1:00:00", actualValue);
+        }
+
+        [TestMethod]
+        public void Return2Min25Seconds40MillisecondsGiven145400Milliseconds()
+        {
+            var milliseconds = 145400;
+            var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
+
+            Assert.AreEqual("2:25:40", actualValue);
+        }
     }
 }

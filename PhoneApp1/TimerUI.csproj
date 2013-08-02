@@ -101,7 +101,7 @@
     <Compile Include="Messages\StopwatchTickEvent.cs" />
     <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
     <Compile Include="Voice\Speech.cs" />
-    <Compile Include="StopWatch.cs" />
+    <Compile Include="CustomStopwatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>

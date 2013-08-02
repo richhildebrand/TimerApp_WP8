@@ -12,7 +12,7 @@ namespace TimerUI.ViewModels
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _messenger;
-        private readonly StopWatch _stopWatch;
+        private readonly CustomStopwatch _stopWatch;
 
         private string miliseconds;
         private string _buttonText;
@@ -23,7 +23,7 @@ namespace TimerUI.ViewModels
         public MainPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            _stopWatch = new StopWatch();
+            _stopWatch = new CustomStopwatch();
             Miliseconds = "0";
             ButtonText = "Start";
             AddItemText = "Timeout Settings";

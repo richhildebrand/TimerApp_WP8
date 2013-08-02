@@ -9,14 +9,14 @@ namespace TimerUI.SpeechHandlers
     {
         private readonly string START_TIMER = "Start";
         private readonly string STOP_TIMER = "Stop";
-        private readonly StopWatch _stopWatch;
+        private readonly CustomStopwatch _stopWatch;
 
-        public StartAndStopSpeechHandler(StopWatch stopWatch)
+        public StartAndStopSpeechHandler(CustomStopwatch stopWatch)
         {
             _stopWatch = stopWatch;
         }
 
-        public StartAndStopSpeechHandler() : this(new StopWatch()) { }
+        public StartAndStopSpeechHandler() : this(new CustomStopwatch()) { }
 
         public bool CanHandleInput(string input)
         {

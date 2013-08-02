@@ -6,9 +6,9 @@ namespace TimerUI.Voice
 {
     public class VoiceCommander
     {
-        private readonly StopWatch _stopWatch;
+        private readonly CustomStopwatch _stopWatch;
 
-        public VoiceCommander(StopWatch stopWatch)
+        public VoiceCommander(CustomStopwatch stopWatch)
         {
             _stopWatch = stopWatch;
         }

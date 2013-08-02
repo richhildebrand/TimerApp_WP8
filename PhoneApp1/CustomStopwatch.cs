@@ -8,7 +8,7 @@ using TimerUI.Messages;
 
 namespace TimerUI
 {
-    public class StopWatch
+    public class CustomStopwatch
     {
         private readonly Stopwatch _accurateTimer;
         private readonly DispatcherTimer _timerWithEvenHooks;
@@ -16,7 +16,7 @@ namespace TimerUI
 
         public long Miliseconds { get; set; }
 
-        public StopWatch()
+        public CustomStopwatch()
         {
             _accurateTimer = new Stopwatch();
             _timerWithEvenHooks = new DispatcherTimer();

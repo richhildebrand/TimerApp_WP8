@@ -10,8 +10,6 @@ namespace TimerUI
 
         public string FormatMilliseconds(long milliseconds)
         {
-
-
             string displayTime;
 
             TimeSpan t = TimeSpan.FromMilliseconds(milliseconds);
@@ -33,7 +31,11 @@ namespace TimerUI
 
         private string StripLastZero(string displayTimeWithExtraZero)
         {
-            return displayTimeWithExtraZero.Substring(0, displayTimeWithExtraZero.Length - 1);
+            if (displayTimeWithExtraZero != "0")
+            {
+                return displayTimeWithExtraZero.Substring(0, displayTimeWithExtraZero.Length - 1);
+            }
+            return displayTimeWithExtraZero;
         }
     }
 }

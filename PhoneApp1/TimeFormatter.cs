@@ -8,17 +8,22 @@ namespace TimerUI
 {
     public class TimeFormatter
     {
-        public string FormatSeconds(int miliseconds)
+        public string FormatMiliseconds(long miliseconds)
         {
             string displayTime;
-            if (miliseconds >= 1000)
+            TimeSpan t = TimeSpan.FromMilliseconds(miliseconds);
+            if (miliseconds < 1000)
             {
-
-                TimeSpan t = TimeSpan.FromMilliseconds(miliseconds);
-                displayTime = string.Format("{0:D1}:{1:D1}", t.Seconds, t.Milliseconds);
-                return StripLastZero(displayTime);
+                displayTime = miliseconds.ToString();
             }
-            displayTime = miliseconds.ToString();
+            else if (miliseconds < 60000)
+            {
+                displayTime = string.Format("{0:D1}:{1:D1}", t.Seconds, t.Milliseconds);
+            }
+            else
+            {
+                displayTime = string.Format("" + t.Minutes + ":" + t.Seconds + ":" + t.Milliseconds);
+            }
             return StripLastZero(displayTime);
         }
 

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
-using TimerUI.Interfaces;
 using TimerUI.Messages;
 using TimerUI.Voice;
 
@@ -13,7 +12,7 @@ namespace TimerUI.ViewModels
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _messenger;
-        private readonly IStopWatch _stopWatch;
+        private readonly StopWatch _stopWatch;
 
         private string miliseconds;
         private string _buttonText;
@@ -46,7 +45,7 @@ namespace TimerUI.ViewModels
 
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
-            Miliseconds = _timeFormatter.FormatSeconds(stopwatchTick.Seconds);
+            Miliseconds = _timeFormatter.FormatMiliseconds(stopwatchTick.Miliseconds);
         }
 
         public string Miliseconds

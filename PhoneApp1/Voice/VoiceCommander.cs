@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Linq;
-using TimerUI.Interfaces;
 using Windows.Phone.Speech.Recognition;
 
 namespace TimerUI.Voice
 {
     public class VoiceCommander
     {
-        private readonly IStopWatch _stopWatch;
+        private readonly StopWatch _stopWatch;
 
-        public VoiceCommander(IStopWatch stopWatch)
+        public VoiceCommander(StopWatch stopWatch)
         {
             _stopWatch = stopWatch;
         }

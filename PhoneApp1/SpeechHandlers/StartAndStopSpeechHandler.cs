@@ -7,8 +7,8 @@ namespace TimerUI.SpeechHandlers
 {
     public class StartAndStopSpeechHandler : ISpeechInputHandler
     {
-        private readonly string START_TIMER = "Start";
-        private readonly string STOP_TIMER = "Stop";
+        private static readonly string START_TIMER = "Start";
+        private static readonly string STOP_TIMER = "Stop";
         private readonly CustomStopwatch _stopWatch;
 
         public StartAndStopSpeechHandler(CustomStopwatch stopWatch)

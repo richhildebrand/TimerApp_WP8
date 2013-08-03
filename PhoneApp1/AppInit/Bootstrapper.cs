@@ -6,24 +6,21 @@ using Caliburn.Micro;
 using Caliburn.Micro.BindableAppBar;
 using TimerUI.ViewModels;
 
-namespace TimerUI
+namespace TimerUI.AppInit
 {
     public class Bootstrapper : PhoneBootstrapper
     {
-        public PhoneContainer container { get; set; }
+        public PhoneContainer Container { get; set; }
 
         protected override void Configure()
         {
-            container = new PhoneContainer();
+            Container = new PhoneContainer();
+            var settingsManager = new SettingsManager();
+            settingsManager.ApplyDefaultsToAnyUnsetValues();
 
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains("VoiceTimeout"))
-            {
-                IsolatedStorageSettings.ApplicationSettings.Add("VoiceTimeout", TimeSpan.FromMinutes(5));
-            }
-
-            container.RegisterPhoneServices(RootFrame);
-            container.PerRequest<MainPageViewModel>();
-            container.PerRequest<SettingsPageViewModel>();
+            Container.RegisterPhoneServices(RootFrame);
+            Container.PerRequest<MainPageViewModel>();
+            Container.PerRequest<SettingsPageViewModel>();
             ConventionManager.AddElementConvention<BindableAppBarButton>(
             Control.IsEnabledProperty, "DataContext", "Click");
             ConventionManager.AddElementConvention<BindableAppBarMenuItem>(
@@ -38,17 +35,17 @@ namespace TimerUI
 
         protected override object GetInstance(Type service, string key)
         {
-            return container.GetInstance(service, key);
+            return Container.GetInstance(service, key);
         }
 
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
-            return container.GetAllInstances(service);
+            return Container.GetAllInstances(service);
         }
 
         protected override void BuildUp(object instance)
         {
-            container.BuildUp(instance);
+            Container.BuildUp(instance);
         }
     }
 }

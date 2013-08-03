@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
+using TimerUI.AppInit;
 using TimerUI.Messages;
 
 namespace TimerUI
@@ -24,7 +25,7 @@ namespace TimerUI
             _timerWithEvenHooks.Interval = new TimeSpan(0, 0, 0, 0, 10);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
-            _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
+            _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
         }
 

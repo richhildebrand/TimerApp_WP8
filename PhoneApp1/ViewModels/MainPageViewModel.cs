@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using TimerUI.AppInit;
 using TimerUI.Messages;
 using TimerUI.Voice;
 
@@ -33,7 +34,7 @@ namespace TimerUI.ViewModels
             Speech.Initialize();
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
-            _messenger = bootstrapper.container.GetAllInstances(typeof(IEventAggregator))
+            _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
             _messenger.Subscribe(this);
         }

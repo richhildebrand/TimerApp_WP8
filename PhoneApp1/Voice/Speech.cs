@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using Windows.Phone.Speech.Recognition;
 using Windows.Phone.Speech.Synthesis;
@@ -21,7 +22,7 @@ namespace TimerUI.Voice
                 return;
 
             Speech.Recognizer = new SpeechRecognizer();
-            Speech.Recognizer.Settings.InitialSilenceTimeout = TimeSpan.FromMinutes(5);
+            Speech.Recognizer.Settings.InitialSilenceTimeout = (TimeSpan)IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"];
 
 
             Speech.Synthesizer = new SpeechSynthesizer();

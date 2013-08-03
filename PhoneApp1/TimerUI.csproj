@@ -93,11 +93,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppInit\SettingsManager.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="AppInit\Bootstrapper.cs" />
     <Compile Include="Messages\StopwatchTickEvent.cs" />
     <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
     <Compile Include="Voice\Speech.cs" />

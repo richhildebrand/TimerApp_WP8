@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:caliburnMicro="clr-namespace:TimerUI">
+    xmlns:caliburnMicro="clr-namespace:TimerUI.AppInit">
 
     <Application.Resources>
         <caliburnMicro:Bootstrapper x:Key="bootstrapper" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using System.Windows.Controls;
 using Caliburn.Micro;
 using Caliburn.Micro.BindableAppBar;
@@ -15,8 +14,7 @@ namespace TimerUI.AppInit
         protected override void Configure()
         {
             Container = new PhoneContainer();
-            var settingsManager = new SettingsManager();
-            settingsManager.ApplyDefaultsToAnyUnsetValues();
+            SettingsManager.ApplyDefaultsToAnyUnsetValues();
 
             Container.RegisterPhoneServices(RootFrame);
             Container.PerRequest<MainPageViewModel>();

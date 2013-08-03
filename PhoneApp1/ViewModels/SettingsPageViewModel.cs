@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using Caliburn.Micro;
+using TimerUI.AppInit;
 
 namespace TimerUI.ViewModels
 {
@@ -17,14 +17,14 @@ namespace TimerUI.ViewModels
             set
             {
                 _voiceTimeout = value;
-                IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"] = TimeSpan.FromMinutes(value);
+                SettingsManager.Set<TimeSpan>("VoiceTimeout", TimeSpan.FromMinutes(value));
                 NotifyOfPropertyChange(() => VoiceTimeout);
             }
         }
 
         public SettingsPageViewModel()
         {
-            var voiceTimeoutSetting = (TimeSpan)IsolatedStorageSettings.ApplicationSettings["VoiceTimeout"];
+            var voiceTimeoutSetting = SettingsManager.Get<TimeSpan>("VoiceTimeout");
             _voiceTimeout = voiceTimeoutSetting.Minutes;
         }
     }

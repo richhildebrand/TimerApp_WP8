@@ -17,14 +17,14 @@ namespace TimerUI.ViewModels
             set
             {
                 _voiceTimeout = value;
-                SettingsManager.Set<TimeSpan>("VoiceTimeout", TimeSpan.FromMinutes(value));
+                SettingsManager.Set<TimeSpan>(SettingsManager.Settings.VoiceTimeout, TimeSpan.FromMinutes(value));
                 NotifyOfPropertyChange(() => VoiceTimeout);
             }
         }
 
         public SettingsPageViewModel()
         {
-            var voiceTimeoutSetting = SettingsManager.Get<TimeSpan>("VoiceTimeout");
+            var voiceTimeoutSetting = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
             _voiceTimeout = voiceTimeoutSetting.Minutes;
         }
     }

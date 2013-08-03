@@ -6,6 +6,13 @@ namespace TimerUI.AppInit
 {
     public static class SettingsManager
     {
+        public enum Settings
+        {
+            VoiceTimeout,
+            StartVoiceCommands,
+            StopVoiceCommands
+        };
+
         public static void ApplyDefaultsToAnyUnsetValues()
         {
             SetToDefaultIfUnset<TimeSpan>("VoiceTimeout", TimeSpan.FromMinutes(6));
@@ -21,14 +28,14 @@ namespace TimerUI.AppInit
             }
         }
 
-        public static T Get<T>(string setting)
+        public static T Get<T>(Settings setting)
         {
-            return (T)IsolatedStorageSettings.ApplicationSettings[setting];
+            return (T)IsolatedStorageSettings.ApplicationSettings[setting.ToString()];
         }
 
-        public static void Set<T>(string setting, T value)
+        public static void Set<T>(Settings setting, T value)
         {
-            IsolatedStorageSettings.ApplicationSettings[setting] = value;
+            IsolatedStorageSettings.ApplicationSettings[setting.ToString()] = value;
         }
     }
 }

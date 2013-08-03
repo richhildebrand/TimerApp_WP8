@@ -22,7 +22,7 @@ namespace TimerUI.Voice
                 return;
 
             Speech.Recognizer = new SpeechRecognizer();
-            Speech.Recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>("VoiceTimeout");
+            Speech.Recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
 
 
             Speech.Synthesizer = new SpeechSynthesizer();

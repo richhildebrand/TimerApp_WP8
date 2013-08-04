@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
@@ -44,15 +45,15 @@
                     Value="{Binding ElementName=VoiceTimeoutInputBox, Path=Value, Mode=TwoWay}"  
                     Grid.Row="2"/>
         </Grid>
+        <bab:BindableAppBar x:Name="AppBar">
+            <bab:BindableAppBarButton x:Name="NavigateToMainPage"
+                                        Text="{Binding AddMenuItemText}"
+                                        IconUri="{Binding Icon}"
+                                        Visibility="{Binding IsVisible}"
+                                        />
+        </bab:BindableAppBar>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
     </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="Timer"
-                                            IconUri="/Images/appbar.settings.png"
-                                            Text="Main Page"
-                                            Click="MainPage_Click"/>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+
 
 </phone:PhoneApplicationPage>

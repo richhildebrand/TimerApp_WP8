@@ -20,7 +20,7 @@ namespace TimerUI.ViewModels
         private string _addItemText;
         private Uri _icon;
         private bool _isVisible;
-        private string _totalTimeText;        
+        private string _listOfLapTimes;        
 
         public MainPageViewModel(INavigationService navigationService)
         {
@@ -31,7 +31,7 @@ namespace TimerUI.ViewModels
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
-            TotalTimeLabel = "";
+            ListOfLapTimes = "";
 
             Speech.Initialize();
 
@@ -103,10 +103,10 @@ namespace TimerUI.ViewModels
             set { _isVisible = value; NotifyOfPropertyChange(() => IsVisible); }
         }
 
-        public string TotalTimeLabel
+        public string ListOfLapTimes
         {
-            get { return this._totalTimeText; }
-            set { _totalTimeText = value; NotifyOfPropertyChange(() => TotalTimeLabel); }
+            get { return this._listOfLapTimes; }
+            set { _listOfLapTimes = value; NotifyOfPropertyChange(() => ListOfLapTimes); }
         }
 
         public void ToggleStartAndStopButton(object sender)
@@ -124,7 +124,7 @@ namespace TimerUI.ViewModels
 
         public void AddLapTimeToList()
         {
-            TotalTimeLabel += Milliseconds + "\n";
+            ListOfLapTimes += Milliseconds + "\n";
         }
     }
 }

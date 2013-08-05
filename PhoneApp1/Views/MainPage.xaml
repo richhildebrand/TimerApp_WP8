@@ -38,6 +38,9 @@
                 </telerikSpeech:SpeechRecognitionMetadata>
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
+        <Grid x:Name="LapPanel" Grid.Row="2" Margin="12,0,12,0">
+            <ContentControl x:Name="TotalTime" Content="{Binding TotalTimeLabel}"  HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+        </Grid>
         <!-- I like this way because it gives the more Win Phone 8 Feel. Thoughts?-->
         <!-- For sure! I just couldn't figure out how to do this! -->
         

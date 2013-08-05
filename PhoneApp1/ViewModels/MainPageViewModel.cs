@@ -20,6 +20,7 @@ namespace TimerUI.ViewModels
         private string _addItemText;
         private Uri _icon;
         private bool _isVisible;
+        private string _totalTimeText;        
 
         public MainPageViewModel(INavigationService navigationService)
         {
@@ -29,7 +30,8 @@ namespace TimerUI.ViewModels
             ButtonText = "Start";
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
-            IsVisible = true; 
+            IsVisible = true;
+            TotalTimeLabel = "Total Lap:";
 
             Speech.Initialize();
 
@@ -45,6 +47,7 @@ namespace TimerUI.ViewModels
             {
                 _stopWatch.Stop();
                 ButtonText = "Start";
+                AddLapTimeToList();
                 Telerik.Windows.Controls.SpeechManager.StartListening();
             }
         }
@@ -100,6 +103,12 @@ namespace TimerUI.ViewModels
             set { _isVisible = value; NotifyOfPropertyChange(() => IsVisible); }
         }
 
+        public string TotalTimeLabel
+        {
+            get { return this._totalTimeText; }
+            set { _totalTimeText = value; NotifyOfPropertyChange(() => TotalTimeLabel); }
+        }
+
         public void ToggleStartAndStopButton(object sender)
         {
             if (ButtonText == "Start")
@@ -111,6 +120,11 @@ namespace TimerUI.ViewModels
                 _messenger.Publish(new StopwatchStopEvent());
                 Telerik.Windows.Controls.SpeechManager.StartListening();
             }
+        }
+
+        public void AddLapTimeToList()
+        {
+            TotalTimeLabel += Milliseconds;
         }
     }
 }

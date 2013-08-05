@@ -41,17 +41,23 @@ namespace TimerUI.ViewModels
 
         public void Handle(StopwatchStopEvent message)
         {
-            _stopWatch.Stop();
-            ButtonText = "Start";
-            Telerik.Windows.Controls.SpeechManager.StartListening();
+            if (_stopWatch.IsRunning())
+            {
+                _stopWatch.Stop();
+                ButtonText = "Start";
+                Telerik.Windows.Controls.SpeechManager.StartListening();
+            }
         }
 
         public void Handle(StopwatchStartEvent message)
         {
-            _stopWatch.Reset();
-            _stopWatch.Start();
-            ButtonText = "Stop";
-            Telerik.Windows.Controls.SpeechManager.StartListening();
+            if (!_stopWatch.IsRunning())
+            {
+                _stopWatch.Reset();
+                _stopWatch.Start();
+                ButtonText = "Stop";
+                Telerik.Windows.Controls.SpeechManager.StartListening();
+            }
         }
 
         public void NavigateToSettingsPage()

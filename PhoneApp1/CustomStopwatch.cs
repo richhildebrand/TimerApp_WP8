@@ -36,6 +36,11 @@ namespace TimerUI
             _messenger.Publish(new StopwatchTickEvent(Milliseconds));
         }
 
+        public bool IsRunning()
+        {
+            return _accurateTimer.IsRunning;
+        }
+
         public void Start()
         {
             _accurateTimer.Start();

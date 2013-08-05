@@ -15,7 +15,7 @@ namespace TimerUI.ViewModels
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
-        private string milliseconds;
+        private string _milliseconds;
         private string _buttonText;
         private string _addItemText;
         private Uri _icon;
@@ -51,8 +51,8 @@ namespace TimerUI.ViewModels
 
         public string Milliseconds
         { 
-            get { return this.milliseconds; }
-            set { milliseconds = value; NotifyOfPropertyChange(() => Milliseconds); }
+            get { return this._milliseconds; }
+            set { _milliseconds = value; NotifyOfPropertyChange(() => Milliseconds); }
         }
 
         public string ButtonText
@@ -83,6 +83,7 @@ namespace TimerUI.ViewModels
         {
             if (ButtonText == "Start")
             {
+                _stopWatch.Reset();
                 _stopWatch.Start();
                 ButtonText = "Stop";
             }

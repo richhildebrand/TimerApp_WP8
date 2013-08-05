@@ -25,8 +25,9 @@ namespace TimerUI
             _timerWithEvenHooks.Interval = new TimeSpan(0, 0, 0, 0, 10);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
-            _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
-                                                                     .FirstOrDefault() as IEventAggregator;
+            _messenger = bootstrapper.Container
+                                     .GetAllInstances(typeof(IEventAggregator))
+                                     .FirstOrDefault() as IEventAggregator;
         }
 
         private void OnEachTick(object sender, EventArgs e)
@@ -45,6 +46,11 @@ namespace TimerUI
         {
             _accurateTimer.Stop();
             _timerWithEvenHooks.Stop();
+        }
+
+        public void Reset()
+        {
+            _accurateTimer.Restart();
         }
     }
 }

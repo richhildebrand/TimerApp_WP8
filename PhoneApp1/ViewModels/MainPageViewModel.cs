@@ -31,7 +31,7 @@ namespace TimerUI.ViewModels
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
-            TotalTimeLabel = "Total Lap:";
+            TotalTimeLabel = "";
 
             Speech.Initialize();
 
@@ -124,7 +124,7 @@ namespace TimerUI.ViewModels
 
         public void AddLapTimeToList()
         {
-            TotalTimeLabel += Milliseconds;
+            TotalTimeLabel += Milliseconds + "\n";
         }
     }
 }

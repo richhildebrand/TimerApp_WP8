@@ -95,6 +95,8 @@
     </Compile>
     <Compile Include="AppInit\SettingsManager.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Messages\StopwatchStartEvent.cs" />
+    <Compile Include="Messages\StopwatchStopEvent.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

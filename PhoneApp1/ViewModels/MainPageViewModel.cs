@@ -8,7 +8,7 @@ using TimerUI.Voice;
 
 namespace TimerUI.ViewModels
 {
-    public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>
+    public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly INavigationService _navigationService;
@@ -37,6 +37,21 @@ namespace TimerUI.ViewModels
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
             _messenger.Subscribe(this);
+        }
+
+        public void Handle(StopwatchStopEvent message)
+        {
+            _stopWatch.Stop();
+            ButtonText = "Start";
+            Telerik.Windows.Controls.SpeechManager.StartListening();
+        }
+
+        public void Handle(StopwatchStartEvent message)
+        {
+            _stopWatch.Reset();
+            _stopWatch.Start();
+            ButtonText = "Stop";
+            Telerik.Windows.Controls.SpeechManager.StartListening();
         }
 
         public void NavigateToSettingsPage()
@@ -83,14 +98,12 @@ namespace TimerUI.ViewModels
         {
             if (ButtonText == "Start")
             {
-                _stopWatch.Reset();
-                _stopWatch.Start();
-                ButtonText = "Stop";
+                _messenger.Publish(new StopwatchStartEvent());
             }
             else if (ButtonText == "Stop")
             {
-                _stopWatch.Stop();
-                ButtonText = "Start";
+                _messenger.Publish(new StopwatchStopEvent());
+                Telerik.Windows.Controls.SpeechManager.StartListening();
             }
         }
     }

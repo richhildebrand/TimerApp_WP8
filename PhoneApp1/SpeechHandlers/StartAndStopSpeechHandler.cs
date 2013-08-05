@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Caliburn.Micro;
 using Telerik.Windows.Controls;
+using TimerUI.AppInit;
+using TimerUI.Messages;
 
 namespace TimerUI.SpeechHandlers
 {
@@ -9,14 +12,15 @@ namespace TimerUI.SpeechHandlers
     {
         private static readonly string START_TIMER = "Start";
         private static readonly string STOP_TIMER = "Stop";
-        private readonly CustomStopwatch _stopWatch;
+        private readonly IEventAggregator _messenger;
 
-        public StartAndStopSpeechHandler(CustomStopwatch stopWatch)
+        public StartAndStopSpeechHandler() 
         {
-            _stopWatch = stopWatch;
+            Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
+            _messenger = bootstrapper.Container
+                                     .GetAllInstances(typeof(IEventAggregator))
+                                     .FirstOrDefault() as IEventAggregator;
         }
-
-        public StartAndStopSpeechHandler() : this(new CustomStopwatch()) { }
 
         public bool CanHandleInput(string input)
         {
@@ -27,21 +31,18 @@ namespace TimerUI.SpeechHandlers
         {
             if (string.Compare(START_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                _stopWatch.Start();
-                Telerik.Windows.Controls.SpeechManager.StartListening();
+                _messenger.Publish(new StopwatchStartEvent());
             }
 
             if (string.Compare(STOP_TIMER, input, StringComparison.InvariantCultureIgnoreCase) == 0)
             {
-                _stopWatch.Stop();
-                Telerik.Windows.Controls.SpeechManager.StartListening();
+                _messenger.Publish(new StopwatchStopEvent());
             }
         }
 
         public void NotifyInputError(FrameworkElement target)
         {
             MessageBox.Show("Error");
-
         }
     }
 }

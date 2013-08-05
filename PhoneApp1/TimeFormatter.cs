@@ -10,32 +10,20 @@ namespace TimerUI
 
         public string FormatMilliseconds(long milliseconds)
         {
-            string displayTime;
-
             TimeSpan t = TimeSpan.FromMilliseconds(milliseconds);
             if (milliseconds < ONE_SECOND)
             {
-                displayTime = milliseconds.ToString();
+                return milliseconds.ToString();
             }
 
             else if (milliseconds < ONE_MINUTE)
             {
-                displayTime = string.Format("{0:D1}:{1:D1}", t.Seconds, t.Milliseconds);
+                return string.Format("{0:D1}:{1:D3}", t.Seconds, t.Milliseconds);
             }
             else
             {
-                displayTime = string.Format("{0:D1}:{1:D2}:{2:D2}", t.Minutes, t.Seconds, t.Milliseconds);
+                return string.Format("{0:D1}:{1:D2}:{2:D3}", t.Minutes, t.Seconds, t.Milliseconds);
             }
-            return StripLastZero(displayTime);
-        }
-
-        private string StripLastZero(string displayTimeWithExtraZero)
-        {
-            if (!displayTimeWithExtraZero.Contains(":0") && displayTimeWithExtraZero != "0")
-            {
-                return displayTimeWithExtraZero.Substring(0, displayTimeWithExtraZero.Length - 1);
-            }
-            return displayTimeWithExtraZero;
         }
     }
 }

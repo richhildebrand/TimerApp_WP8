@@ -31,7 +31,7 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
             var milliseconds = 300;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
-            Assert.AreEqual("30", actualValue);
+            Assert.AreEqual("300", actualValue);
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
             var milliseconds = 1000;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
-            Assert.AreEqual("1:0", actualValue);
+            Assert.AreEqual("1:000", actualValue);
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
             var milliseconds = 1300;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
-            Assert.AreEqual("1:30", actualValue);
+            Assert.AreEqual("1:300", actualValue);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
             var milliseconds = 60000;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
-            Assert.AreEqual("1:00:00", actualValue);
+            Assert.AreEqual("1:00:000", actualValue);
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace Unit_Tests.UnitTests.TimeFormatterTests
             var milliseconds = 145400;
             var actualValue = _timeFormatter.FormatMilliseconds(milliseconds);
 
-            Assert.AreEqual("2:25:40", actualValue);
+            Assert.AreEqual("2:25:400", actualValue);
         }
     }
 }

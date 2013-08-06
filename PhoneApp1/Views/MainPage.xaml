@@ -27,14 +27,12 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button x:Name="ToggleStartAndStopButton" Content="{Binding ButtonText}" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <telerikSpeech:SpeechManager.SpeechMetadata>
-                <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" InputIdentificationToken="MainContent">
+                <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" 
+                                                         InputIdentificationToken="MainContent"
+                                                         RecognizableStrings="{Binding ValidVoiceCommands}">
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>
                         <speech:StartAndStopSpeechHandler/>
                     </telerikSpeech:SpeechRecognitionMetadata.InputHandler>
-                    <telerikSpeech:SpeechRecognitionMetadata.RecognizableStrings>
-                        <telerikSpeech:RecognizableString Value="Start" />
-                        <telerikSpeech:RecognizableString Value="Stop" />
-                    </telerikSpeech:SpeechRecognitionMetadata.RecognizableStrings>
                 </telerikSpeech:SpeechRecognitionMetadata>
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>

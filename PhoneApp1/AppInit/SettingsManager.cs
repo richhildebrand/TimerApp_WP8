@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using Telerik.Windows.Controls;
 
 namespace TimerUI.AppInit
 {
@@ -16,8 +18,14 @@ namespace TimerUI.AppInit
         public static void ApplyDefaultsToAnyUnsetValues()
         {
             SetToDefaultIfUnset<TimeSpan>("VoiceTimeout", TimeSpan.FromMinutes(6));
-            SetToDefaultIfUnset<String>("StartVoiceCommands", "Start");
-            SetToDefaultIfUnset<String>("StopVoiceCommands", "Stop");
+
+            var startCommands = new List<RecognizableString>();
+            startCommands.Add(CreateRecognizableString("Start"));
+            SetToDefaultIfUnset<List<RecognizableString>>("StartVoiceCommands", startCommands);
+
+            var stopCommands = new List<RecognizableString>();
+            stopCommands.Add(CreateRecognizableString("Stop"));
+            SetToDefaultIfUnset<List<RecognizableString>>("StopVoiceCommands", stopCommands);
         }
 
         private static void SetToDefaultIfUnset<T>(string setting, T defaultValue)
@@ -36,6 +44,13 @@ namespace TimerUI.AppInit
         public static void Set<T>(Settings setting, T value)
         {
             IsolatedStorageSettings.ApplicationSettings[setting.ToString()] = value;
+        }
+
+        private static RecognizableString CreateRecognizableString(string voiceCommand)
+        {
+            var recognizableString = new RecognizableString();
+            recognizableString.Value = voiceCommand;
+            return recognizableString;
         }
     }
 }

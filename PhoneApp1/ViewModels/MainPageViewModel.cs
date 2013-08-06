@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using Telerik.Windows.Controls;
 using TimerUI.AppInit;
 using TimerUI.Messages;
 using TimerUI.Voice;
@@ -15,6 +17,7 @@ namespace TimerUI.ViewModels
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
+        private List<RecognizableString>_validVoiceCommands;
         private string _milliseconds;
         private string _buttonText;
         private string _addItemText;
@@ -33,7 +36,7 @@ namespace TimerUI.ViewModels
             IsVisible = true;
             ListOfLapTimes = "";
 
-            Speech.Initialize();
+            ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
@@ -48,7 +51,8 @@ namespace TimerUI.ViewModels
                 _stopWatch.Stop();
                 ButtonText = "Start";
                 AddLapTimeToList();
-                Telerik.Windows.Controls.SpeechManager.StartListening();
+                ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
+                SpeechManager.StartListening();
             }
         }
 
@@ -59,7 +63,8 @@ namespace TimerUI.ViewModels
                 _stopWatch.Reset();
                 _stopWatch.Start();
                 ButtonText = "Stop";
-                Telerik.Windows.Controls.SpeechManager.StartListening();
+                ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
+                SpeechManager.StartListening();
             }
         }
 
@@ -71,6 +76,12 @@ namespace TimerUI.ViewModels
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
             Milliseconds = _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
+        }
+
+        public List<RecognizableString> ValidVoiceCommands
+        {
+            get { return _validVoiceCommands; }
+            set { _validVoiceCommands = value; NotifyOfPropertyChange(() => ValidVoiceCommands); }
         }
 
         public string Milliseconds

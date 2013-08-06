@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikTextBox="clr-namespace:Telerik.Windows.Controls.PhoneTextBox;assembly=Telerik.Windows.Controls.Primitives"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
@@ -14,17 +16,31 @@
             Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" >
             <TextBlock Text="Settings"/>
-            <TextBlock x:Name="VoiceTimeout" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
         <Grid Grid.Row="1" VerticalAlignment="Center">
+            <telerikPrimitives:RadTextBox x:Name="TextBoxUsername" 
+                                          Watermark="Enter additional start command" 
+                                          LostFocus="LostFocusNewStartVoiceCommand"
+                                          ActionButtonVisibility="Visible" 
+                                          ActionButtonTap="ActionButtonSaveNewStartVoiceCommand">
+                <telerikPrimitives:RadTextBox.ActionButtonStyle>
+                    <Style TargetType="telerikTextBox:TextBoxActionButton">
+                        <Setter Property="RestStateImageSource" Value="Question.png"/>
+                    </Style>
+                </telerikPrimitives:RadTextBox.ActionButtonStyle>
+            </telerikPrimitives:RadTextBox>
+        </Grid>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid Grid.Row="2" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

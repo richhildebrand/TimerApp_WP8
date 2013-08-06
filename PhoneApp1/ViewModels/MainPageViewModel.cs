@@ -59,7 +59,7 @@ namespace TimerUI.ViewModels
                 AddLapTimeToList();
                 AddTotalTime();
                 ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
-                SpeechManager.StartListening();
+                //SpeechManager.StartListening();
             }
         }
 
@@ -71,7 +71,7 @@ namespace TimerUI.ViewModels
                 _stopWatch.Start();
                 ButtonText = "Stop";
                 ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
-                SpeechManager.StartListening();
+                //SpeechManager.StartListening();
             }
         }
 
@@ -156,7 +156,7 @@ namespace TimerUI.ViewModels
         public void AddTotalTime()
         {
             long totalSeconds = _previousMilli;
-            TotalTimeElapsed = _timeFormatter.FormatMilliseconds(totalSeconds);
+            TotalTimeElapsed = "Total Time: " +_timeFormatter.FormatMilliseconds(totalSeconds);
         }
     }
 }

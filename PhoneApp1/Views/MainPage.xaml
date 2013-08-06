@@ -27,7 +27,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Button x:Name="ToggleStartAndStopButton" Content="{Binding ButtonText}" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <telerikSpeech:SpeechManager.SpeechMetadata>
-                <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint="Available commands: 'Start' or 'Stop'" 
+                <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint=" " 
                                                          InputIdentificationToken="MainContent"
                                                          RecognizableStrings="{Binding ValidVoiceCommands}">
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>

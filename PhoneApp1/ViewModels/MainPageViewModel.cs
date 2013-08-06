@@ -25,6 +25,11 @@ namespace TimerUI.ViewModels
         private bool _isVisible;
         private string _listOfLapTimes;        
 
+        private string _totalTimeElapsed;
+
+        private long _actualMilliseconds;
+        private long _previousMilli;
+
         public MainPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -35,6 +40,7 @@ namespace TimerUI.ViewModels
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
             ListOfLapTimes = "";
+            TotalTimeElapsed = "";
 
             ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
 
@@ -51,6 +57,7 @@ namespace TimerUI.ViewModels
                 _stopWatch.Stop();
                 ButtonText = "Start";
                 AddLapTimeToList();
+                AddTotalTime();
                 ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
                 SpeechManager.StartListening();
             }
@@ -75,6 +82,7 @@ namespace TimerUI.ViewModels
 
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
+            _actualMilliseconds = stopwatchTick.Milliseconds;
             Milliseconds = _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
         }
 
@@ -120,6 +128,12 @@ namespace TimerUI.ViewModels
             set { _listOfLapTimes = value; NotifyOfPropertyChange(() => ListOfLapTimes); }
         }
 
+        public string TotalTimeElapsed
+        {
+            get { return this._totalTimeElapsed; }
+            set { _totalTimeElapsed = value; NotifyOfPropertyChange(() => TotalTimeElapsed); }
+        }
+
         public void ToggleStartAndStopButton(object sender)
         {
             if (ButtonText == "Start")
@@ -135,7 +149,14 @@ namespace TimerUI.ViewModels
 
         public void AddLapTimeToList()
         {
+            _previousMilli += _actualMilliseconds;
             ListOfLapTimes += Milliseconds + "\n";
+        }
+
+        public void AddTotalTime()
+        {
+            long totalSeconds = _previousMilli;
+            TotalTimeElapsed = _timeFormatter.FormatMilliseconds(totalSeconds);
         }
     }
 }

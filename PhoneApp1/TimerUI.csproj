@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppInit\SettingsManager.cs" />
+    <Compile Include="Helpers\SpeechEvaluator.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\StopwatchStartEvent.cs" />
     <Compile Include="Messages\StopwatchStopEvent.cs" />
@@ -111,7 +112,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TimeFormatter.cs" />
+    <Compile Include="Helpers\TimeFormatter.cs" />
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>

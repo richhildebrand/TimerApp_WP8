@@ -45,7 +45,7 @@ namespace TimerUI.ViewModels
             ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
 
             Speech.Initialize();
-            Speech.Synthesizer.SpeakTextAsync("Awesome informative message for Eric's multicolored card.");
+            Speech.Synthesizer.SpeakTextAsync("Default voice commands, start and stop.");
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))

@@ -29,7 +29,10 @@
             <telerikSpeech:SpeechManager.SpeechMetadata>
                 <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint=" " 
                                                          InputIdentificationToken="MainContent"
-                                                         RecognizableStrings="{Binding ValidVoiceCommands}">
+                                                         RecognizableStrings="{Binding ValidVoiceCommands}"
+                                                         InvalidInputAnnouncement = " "
+                                                         NotRecognizedInputAnnouncement = "Voice may have stopped."
+                                                         >
                     <telerikSpeech:SpeechRecognitionMetadata.InputHandler>
                         <speech:StartAndStopSpeechHandler/>
                     </telerikSpeech:SpeechRecognitionMetadata.InputHandler>

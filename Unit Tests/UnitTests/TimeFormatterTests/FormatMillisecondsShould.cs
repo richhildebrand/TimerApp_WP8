@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TimerUI;
+using TimerUI.Helpers;
 
 namespace Unit_Tests.UnitTests.TimeFormatterTests
 {

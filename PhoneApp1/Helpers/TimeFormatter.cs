@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TimerUI
+namespace TimerUI.Helpers
 {
     public class TimeFormatter
     {

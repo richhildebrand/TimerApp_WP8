@@ -5,6 +5,7 @@ using System.Windows;
 using Caliburn.Micro;
 using Telerik.Windows.Controls;
 using TimerUI.AppInit;
+using TimerUI.Helpers;
 using TimerUI.Messages;
 using TimerUI.Voice;
 

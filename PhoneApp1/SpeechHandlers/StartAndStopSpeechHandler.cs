@@ -38,6 +38,7 @@ namespace TimerUI.SpeechHandlers
             {
                 _messenger.Publish(new StopwatchStopEvent());
             }
+            SpeechManager.StartListening();
         }
 
         public void NotifyInputError(FrameworkElement target)

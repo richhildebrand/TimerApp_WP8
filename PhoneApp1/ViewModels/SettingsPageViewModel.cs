@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows;
 using Caliburn.Micro;
 using TimerUI.AppInit;
 
@@ -40,6 +39,11 @@ namespace TimerUI.ViewModels
         public void NavigateToMainPage()
         {
             _navigationService.UriFor<MainPageViewModel>().Navigate();
+        }
+
+        public void EditStopCommands()
+        {
+            _navigationService.UriFor<EditSettingPageViewModel>().Navigate();
         }
 
         public int VoiceTimeout { 

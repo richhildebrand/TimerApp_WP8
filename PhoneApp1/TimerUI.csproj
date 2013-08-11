@@ -98,6 +98,10 @@
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\StopwatchStartEvent.cs" />
     <Compile Include="Messages\StopwatchStopEvent.cs" />
+    <Compile Include="ViewModels\EditSettingPageViewModel.cs" />
+    <Compile Include="Views\EditSettingPage.xaml.cs">
+      <DependentUpon>EditSettingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Views\EditSettingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

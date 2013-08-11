@@ -17,8 +17,11 @@ namespace TimerUI.AppInit
             SettingsManager.ApplyDefaultsToAnyUnsetValues();
 
             Container.RegisterPhoneServices(RootFrame);
+
             Container.PerRequest<MainPageViewModel>();
             Container.PerRequest<SettingsPageViewModel>();
+            Container.PerRequest<EditSettingPageViewModel>();
+
             ConventionManager.AddElementConvention<BindableAppBarButton>(
             Control.IsEnabledProperty, "DataContext", "Click");
             ConventionManager.AddElementConvention<BindableAppBarMenuItem>(

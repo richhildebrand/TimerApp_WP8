@@ -26,17 +26,23 @@
         </StackPanel>
 
         <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <telerikPrimitives:RadTextBox x:Name="TextBoxUsername" 
                                           Watermark="Enter additional start command" 
                                           LostFocus="LostFocusNewStartVoiceCommand"
                                           ActionButtonVisibility="Visible" 
-                                          ActionButtonTap="ActionButtonSaveNewStartVoiceCommand">
+                                          ActionButtonTap="ActionButtonSaveNewStartVoiceCommand"
+                                          Grid.Row="0">
                 <telerikPrimitives:RadTextBox.ActionButtonStyle>
                     <Style TargetType="telerikTextBox:TextBoxActionButton">
                         <Setter Property="RestStateImageSource" Value="Question.png"/>
                     </Style>
                 </telerikPrimitives:RadTextBox.ActionButtonStyle>
             </telerikPrimitives:RadTextBox>
+            <Button x:Name="EditStopCommands"  Content="Edit Stop Commands" Grid.Row="1"/>
         </Grid>
 
         <!--ContentPanel - place additional content here-->

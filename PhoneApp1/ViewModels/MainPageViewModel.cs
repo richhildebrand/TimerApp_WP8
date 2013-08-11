@@ -11,7 +11,7 @@ using TimerUI.Voice;
 
 namespace TimerUI.ViewModels
 {
-    public class MainPageViewModel : PropertyChangedBase, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>
+    public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly INavigationService _navigationService;
@@ -36,14 +36,12 @@ namespace TimerUI.ViewModels
             _navigationService = navigationService;
             _stopWatch = new CustomStopwatch();
             Milliseconds = "0";
-            ButtonText = "Start";
+
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
             ListOfLapTimes = "";
             TotalTimeElapsed = "";
-
-            ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
 
             Speech.Initialize();
             Speech.Synthesizer.SpeakTextAsync("Default voice commands, start and stop.");
@@ -52,6 +50,14 @@ namespace TimerUI.ViewModels
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
                                                                      .FirstOrDefault() as IEventAggregator;
             _messenger.Subscribe(this);
+        }
+
+        protected override void OnViewReady(object view)
+        {
+            base.OnViewReady(view);
+            _stopWatch.Stop();
+            ButtonText = "Start";
+            ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
         }
 
         public void Handle(StopwatchStopEvent message)

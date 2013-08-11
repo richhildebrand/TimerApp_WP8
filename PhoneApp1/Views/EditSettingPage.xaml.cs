@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using Microsoft.Phone.Controls;
 using Telerik.Windows.Controls;
 using TimerUI.AppInit;
@@ -14,6 +13,15 @@ namespace TimerUI.Views
         public EditSettingPage()
         {
             InitializeComponent();
+            UpdateVoiceCommandList();
+        }
+
+        private void UpdateVoiceCommandList()
+        {
+            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
+            var stringListOfVoiceCommands = new List<string>();
+            voiceCommands.ForEach(vc => stringListOfVoiceCommands.Add(vc.Value));
+            VoiceCommandList.ItemsSource = stringListOfVoiceCommands;
         }
 
         private void AddNewStopCommand(object sender, System.Windows.Input.GestureEventArgs e)
@@ -33,6 +41,7 @@ namespace TimerUI.Views
                 if (IsValidCommand(arg.Text))
                 {
                     SettingsManager.AddNewVoiceCommand(SettingsManager.Settings.StopVoiceCommands, arg.Text.Trim());
+                    UpdateVoiceCommandList();
                 }
             }
         }

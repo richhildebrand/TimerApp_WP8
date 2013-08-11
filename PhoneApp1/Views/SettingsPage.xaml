@@ -30,18 +30,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <telerikPrimitives:RadTextBox x:Name="TextBoxUsername" 
-                                          Watermark="Enter additional start command" 
-                                          LostFocus="LostFocusNewStartVoiceCommand"
-                                          ActionButtonVisibility="Visible" 
-                                          ActionButtonTap="ActionButtonSaveNewStartVoiceCommand"
-                                          Grid.Row="0">
-                <telerikPrimitives:RadTextBox.ActionButtonStyle>
-                    <Style TargetType="telerikTextBox:TextBoxActionButton">
-                        <Setter Property="RestStateImageSource" Value="Question.png"/>
-                    </Style>
-                </telerikPrimitives:RadTextBox.ActionButtonStyle>
-            </telerikPrimitives:RadTextBox>
+            <Button x:Name="EditStartCommands"  Content="Edit Start Commands" Grid.Row="0"/>
             <Button x:Name="EditStopCommands"  Content="Edit Stop Commands" Grid.Row="1"/>
         </Grid>
 

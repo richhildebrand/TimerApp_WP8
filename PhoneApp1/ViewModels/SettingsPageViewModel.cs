@@ -45,7 +45,7 @@ namespace TimerUI.ViewModels
         {
             _navigationService.UriFor<EditSettingPageViewModel>()
                                 .WithParam(x => x.AddNewText, "Add new stop command")
-                                .WithParam(x => x.SettingToModifyHint, "StopVoiceCommands")
+                                .WithParam(x => x.SettingToModify, SettingsManager.Settings.StopVoiceCommands)
                                 .Navigate();
         }
 

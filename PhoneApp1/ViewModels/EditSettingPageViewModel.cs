@@ -11,21 +11,10 @@ namespace TimerUI.ViewModels
     public class EditSettingPageViewModel : Screen
     {
         private List<String> _voiceCommandList;
+
         public string AddNewText { get; set; }
-        
-        // Hack because I cannot get caliburn to pass the enum
-        public string SettingToModifyHint { get; set; }
-        public SettingsManager.Settings GetSettingToModify(string hint)
-        {
-            if (SettingsManager.Settings.StartVoiceCommands.ToString() == hint)
-            {
-                return SettingsManager.Settings.StartVoiceCommands;
-            }
-            else
-            {
-                return SettingsManager.Settings.StopVoiceCommands;
-            }
-        }
+        public SettingsManager.Settings SettingToModify { get; set; }
+
 
         public List<String> VoiceCommandList {
             get { return _voiceCommandList; }
@@ -35,8 +24,7 @@ namespace TimerUI.ViewModels
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);
-            var settingToModify = GetSettingToModify(SettingToModifyHint);
-            UpdateVoiceCommandList(settingToModify);
+            UpdateVoiceCommandList();
         }
 
         public void AddNewStopCommand()
@@ -49,9 +37,9 @@ namespace TimerUI.ViewModels
             );
         }
 
-        private void UpdateVoiceCommandList(SettingsManager.Settings settingToModify)
+        private void UpdateVoiceCommandList()
         {
-            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(settingToModify);
+            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingToModify);
             var stringListOfVoiceCommands = new List<string>();
             voiceCommands.ForEach(vc => stringListOfVoiceCommands.Add(vc.Value));
             VoiceCommandList = stringListOfVoiceCommands;
@@ -63,9 +51,8 @@ namespace TimerUI.ViewModels
             {
                 if (IsValidCommand(arg.Text))
                 {
-                    SettingsManager.Settings settingToModify = GetSettingToModify(SettingToModifyHint);
-                    SettingsManager.AddNewVoiceCommand(settingToModify, arg.Text.Trim());
-                    UpdateVoiceCommandList(settingToModify);
+                    SettingsManager.AddNewVoiceCommand(SettingToModify, arg.Text.Trim());
+                    UpdateVoiceCommandList();
                 }
             }
         }

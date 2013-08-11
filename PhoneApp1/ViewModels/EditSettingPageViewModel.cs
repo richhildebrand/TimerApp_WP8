@@ -8,18 +8,35 @@ using TimerUI.AppInit;
 
 namespace TimerUI.ViewModels
 {
-    public class EditSettingPageViewModel : PropertyChangedBase
+    public class EditSettingPageViewModel : Screen
     {
         private List<String> _voiceCommandList;
+        public string AddNewText { get; set; }
+        
+        // Hack because I cannot get caliburn to pass the enum
+        public string SettingToModifyHint { get; set; }
+        public SettingsManager.Settings GetSettingToModify(string hint)
+        {
+            if (SettingsManager.Settings.StartVoiceCommands.ToString() == hint)
+            {
+                return SettingsManager.Settings.StartVoiceCommands;
+            }
+            else
+            {
+                return SettingsManager.Settings.StopVoiceCommands;
+            }
+        }
 
         public List<String> VoiceCommandList {
             get { return _voiceCommandList; }
             set { _voiceCommandList = value; NotifyOfPropertyChange(() => VoiceCommandList); }
         }
 
-        public EditSettingPageViewModel()
+        protected override void OnViewReady(object view)
         {
-            UpdateVoiceCommandList();
+            base.OnViewReady(view);
+            var settingToModify = GetSettingToModify(SettingToModifyHint);
+            UpdateVoiceCommandList(settingToModify);
         }
 
         public void AddNewStopCommand()
@@ -32,9 +49,9 @@ namespace TimerUI.ViewModels
             );
         }
 
-        private void UpdateVoiceCommandList()
+        private void UpdateVoiceCommandList(SettingsManager.Settings settingToModify)
         {
-            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
+            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(settingToModify);
             var stringListOfVoiceCommands = new List<string>();
             voiceCommands.ForEach(vc => stringListOfVoiceCommands.Add(vc.Value));
             VoiceCommandList = stringListOfVoiceCommands;
@@ -46,8 +63,9 @@ namespace TimerUI.ViewModels
             {
                 if (IsValidCommand(arg.Text))
                 {
-                    SettingsManager.AddNewVoiceCommand(SettingsManager.Settings.StopVoiceCommands, arg.Text.Trim());
-                    UpdateVoiceCommandList();
+                    SettingsManager.Settings settingToModify = GetSettingToModify(SettingToModifyHint);
+                    SettingsManager.AddNewVoiceCommand(settingToModify, arg.Text.Trim());
+                    UpdateVoiceCommandList(settingToModify);
                 }
             }
         }

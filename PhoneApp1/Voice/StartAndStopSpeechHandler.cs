@@ -4,10 +4,9 @@ using System.Windows;
 using Caliburn.Micro;
 using Telerik.Windows.Controls;
 using TimerUI.AppInit;
-using TimerUI.Helpers;
 using TimerUI.Messages;
 
-namespace TimerUI.SpeechHandlers
+namespace TimerUI.Voice
 {
     public class StartAndStopSpeechHandler : ISpeechInputHandler
     {
@@ -34,10 +33,12 @@ namespace TimerUI.SpeechHandlers
             if (_speechEvaluator.IsValidStartCommand(input))
             {
                 _messenger.Publish(new StopwatchStartEvent());
+                Speech.Synthesizer.SpeakTextAsync("Timer started.");
             }
             else if (_speechEvaluator.IsValidStopCommand(input))
             {
                 _messenger.Publish(new StopwatchStopEvent());
+                Speech.Synthesizer.SpeakTextAsync("Timer stopped.");
             }
             SpeechManager.StartListening();
         }

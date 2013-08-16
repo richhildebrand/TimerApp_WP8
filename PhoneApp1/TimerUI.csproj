@@ -94,7 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppInit\SettingsManager.cs" />
-    <Compile Include="Helpers\SpeechEvaluator.cs" />
+    <Compile Include="Voice\SpeechEvaluator.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\StopwatchStartEvent.cs" />
     <Compile Include="Messages\StopwatchStopEvent.cs" />
@@ -107,7 +107,7 @@
     </Compile>
     <Compile Include="AppInit\Bootstrapper.cs" />
     <Compile Include="Messages\StopwatchTickEvent.cs" />
-    <Compile Include="SpeechHandlers\StartAndStopSpeechHandler.cs" />
+    <Compile Include="Voice\StartAndStopSpeechHandler.cs" />
     <Compile Include="Voice\Speech.cs" />
     <Compile Include="CustomStopwatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,7 +122,6 @@
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
-    <Compile Include="Voice\VoiceCommander.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -208,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="SpeechHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

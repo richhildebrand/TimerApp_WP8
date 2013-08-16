@@ -6,7 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
     xmlns:telerikSpeech="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Speech"
-    xmlns:speech="clr-namespace:TimerUI.SpeechHandlers"
+    xmlns:speech="clr-namespace:TimerUI.Voice"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->

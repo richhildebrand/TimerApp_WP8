@@ -4,7 +4,7 @@ using System.Linq;
 using Telerik.Windows.Controls;
 using TimerUI.AppInit;
 
-namespace TimerUI.Helpers
+namespace TimerUI.Voice
 {
     class SpeechEvaluator
     {

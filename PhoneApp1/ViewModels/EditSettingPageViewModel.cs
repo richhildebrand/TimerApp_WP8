@@ -27,13 +27,13 @@ namespace TimerUI.ViewModels
             UpdateVoiceCommandList();
         }
 
-        public void AddNewStopCommand()
+        public void AddNewCommand()
         {
             TextBlock messageTextBlock = new TextBlock();
-            RadInputPrompt.Show("Add a new stop command",
+            RadInputPrompt.Show(AddNewText,
                                 MessageBoxButtons.OKCancel,
                                 messageTextBlock,
-                                closedHandler: (arg) => OnStopInputClose(arg)
+                                closedHandler: (arg) => OnAddInputClose(arg)
             );
         }
 
@@ -45,7 +45,7 @@ namespace TimerUI.ViewModels
             VoiceCommandList = stringListOfVoiceCommands;
         }
 
-        public void OnStopInputClose(InputPromptClosedEventArgs arg)
+        public void OnAddInputClose(InputPromptClosedEventArgs arg)
         {
             if (arg.Result == DialogResult.OK)
             {

@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button x:Name="AddNewStopCommand" FontSize="24" Content="{Binding AddNewText}" />    
+            <Button x:Name="AddNewCommand" FontSize="24" Content="{Binding AddNewText}" />    
         </Grid>
 
         <Grid Grid.Row="1">

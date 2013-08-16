@@ -44,7 +44,8 @@ namespace TimerUI.ViewModels
             TotalTimeElapsed = "";
 
             Speech.Initialize();
-            Speech.Synthesizer.SpeakTextAsync("Default voice commands, start and stop.");
+            Speech.Synthesizer.SpeakTextAsync("Start commands, are...");
+            Speech.Synthesizer.SpeakTextAsync("Stop commands, are...");
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))

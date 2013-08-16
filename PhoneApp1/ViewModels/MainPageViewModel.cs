@@ -63,6 +63,12 @@ namespace TimerUI.ViewModels
             _stopWatch.Stop();
             ButtonText = "Start";
             ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
+            SpeechManager.StartListening();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            SpeechManager.Reset();
         }
 
         public void Handle(StopwatchStopEvent message)

@@ -24,7 +24,7 @@ namespace TimerUI.ViewModels
         private string _addItemText;
         private Uri _icon;
         private bool _isVisible;
-        private string _listOfLapTimes;        
+        private List<string> _listOfLapTimes;        
 
         private string _totalTimeElapsed;
 
@@ -40,7 +40,7 @@ namespace TimerUI.ViewModels
             AddItemText = "Timeout Settings";
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
-            ListOfLapTimes = "";
+            ListOfLapTimes = new List<string>();
             TotalTimeElapsed = "";
 
             Speech.Initialize();
@@ -135,7 +135,7 @@ namespace TimerUI.ViewModels
             set { _isVisible = value; NotifyOfPropertyChange(() => IsVisible); }
         }
 
-        public string ListOfLapTimes
+        public List<string> ListOfLapTimes
         {
             get { return this._listOfLapTimes; }
             set { _listOfLapTimes = value; NotifyOfPropertyChange(() => ListOfLapTimes); }
@@ -163,7 +163,9 @@ namespace TimerUI.ViewModels
         public void AddLapTimeToList()
         {
             _previousMilli += _actualMilliseconds;
-            ListOfLapTimes += Milliseconds + "\n";
+            var temp = new List<string>();
+            temp.Add(Milliseconds);
+            ListOfLapTimes = temp.Union(ListOfLapTimes).ToList();
         }
 
         public void AddTotalTime()

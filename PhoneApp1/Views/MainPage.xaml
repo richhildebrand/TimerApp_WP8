@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
     xmlns:telerikSpeech="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Speech"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:speech="clr-namespace:TimerUI.Voice"
     shell:SystemTray.IsVisible="True">
 
@@ -14,7 +15,9 @@
             Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
@@ -39,15 +42,19 @@
                 </telerikSpeech:SpeechRecognitionMetadata>
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
+
         <Grid x:Name="LapPanel" Grid.Row="2" Margin="12,0,12,0">
-            <ContentControl x:Name="TotalTime" Content="{Binding ListOfLapTimes}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+            <telerikPrimitives:RadDataBoundListBox  ItemsSource="{Binding ListOfLapTimes, Mode=TwoWay}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center" 
+                                                    FontSize="40">
+            </telerikPrimitives:RadDataBoundListBox >
+        </Grid>
+        
+        <Grid Grid.Row="3">
             <ContentControl x:Name="AddedTime" Content="{Binding TotalTimeElapsed}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="40" />
         </Grid>
-        <!-- I like this way because it gives the more Win Phone 8 Feel. Thoughts?-->
-        <!-- For sure! I just couldn't figure out how to do this! -->
-        
-        <!-- We can also add the menu items instead of icons if you'd like-->
-        <!-- I like icons in general, but you actually use the phone so I'll defer to you -->
+
         <bab:BindableAppBar x:Name="AppBar">
             <bab:BindableAppBarButton x:Name="NavigateToSettingsPage"
                                         Text="{Binding AddItemText}"

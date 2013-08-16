@@ -44,8 +44,12 @@ namespace TimerUI.ViewModels
             TotalTimeElapsed = "";
 
             Speech.Initialize();
-            Speech.Synthesizer.SpeakTextAsync("Start commands, are...");
-            Speech.Synthesizer.SpeakTextAsync("Stop commands, are...");
+            string commands = "";
+            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands)
+                .Union(SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands)).ToList();
+
+            voiceCommands.ForEach(sc => commands = commands + ", " + sc.Value);
+            Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))

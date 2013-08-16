@@ -60,7 +60,6 @@ namespace TimerUI.ViewModels
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);
-            _stopWatch.Stop();
             ButtonText = "Start";
             ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
             SpeechManager.StartListening();
@@ -68,6 +67,11 @@ namespace TimerUI.ViewModels
 
         protected override void OnDeactivate(bool close)
         {
+            base.OnDeactivate(close);
+            if (_stopWatch.IsRunning())
+            {
+                Handle(new StopwatchStopEvent());
+            }
             SpeechManager.Reset();
         }
 

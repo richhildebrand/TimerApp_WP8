@@ -22,7 +22,7 @@ namespace TimerUI.Views
         {
             var targetListBox = sender as RadDataBoundListBox;
             _commandToDelete = targetListBox.SelectedValue.ToString();
-            var message = "Are you sure you want to delete \"" + _commandToDelete + "\"";             
+            var message = "Are you sure you want to delete the voice command \"" + _commandToDelete + "\"";             
             TextBlock messageTextBlock = new TextBlock();
 
             RadMessageBox.Show(message, MessageBoxButtons.OKCancel, closedHandler: (arg) => DeleteSelectedsCommands(arg));

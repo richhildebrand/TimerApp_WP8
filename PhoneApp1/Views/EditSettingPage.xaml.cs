@@ -13,7 +13,6 @@ namespace TimerUI.Views
         public EditSettingPage()
         {
             InitializeComponent();
-            var x = new RadDataBoundListBox();
         }
 
         public void OnItemTap(object sender, ListBoxItemTapEventArgs e)

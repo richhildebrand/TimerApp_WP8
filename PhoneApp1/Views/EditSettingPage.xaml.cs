@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Controls;
-using Microsoft.Phone.Controls;
 using Telerik.Windows.Controls;
 using TimerUI.AppInit;
 using TimerUI.ViewModels;
@@ -16,6 +13,7 @@ namespace TimerUI.Views
         public EditSettingPage()
         {
             InitializeComponent();
+            var x = new RadDataBoundListBox();
         }
 
         public void OnItemTap(object sender, ListBoxItemTapEventArgs e)
@@ -23,7 +21,6 @@ namespace TimerUI.Views
             var targetListBox = sender as RadDataBoundListBox;
             _commandToDelete = targetListBox.SelectedValue.ToString();
             var message = "Are you sure you want to delete the voice command \"" + _commandToDelete + "\"";             
-            TextBlock messageTextBlock = new TextBlock();
 
             RadMessageBox.Show(message, MessageBoxButtons.OKCancel, closedHandler: (arg) => DeleteSelectedsCommands(arg));
         }

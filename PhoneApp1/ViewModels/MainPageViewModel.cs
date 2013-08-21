@@ -184,5 +184,13 @@ namespace TimerUI.ViewModels
             long totalSeconds = _previousMilli;
             TotalTimeElapsed = "Total Time: " +_timeFormatter.FormatMilliseconds(totalSeconds);
         }
+
+        public void ResetAllTimes()
+        {
+            Handle(new StopwatchStopEvent());
+            TotalTimeElapsed = "";
+            ListOfLapTimes = new List<string>();
+            Milliseconds = "0";
+        }
     }
 }

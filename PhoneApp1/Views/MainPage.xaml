@@ -43,7 +43,7 @@
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
 
-        <Grid x:Name="LapPanel" Grid.Row="2" Margin="12,0,12,0">
+        <Grid x:Name="LapPanel" Grid.Row="2" Margin="20, 0, 0, 0">
             <telerikPrimitives:RadDataBoundListBox  ItemsSource="{Binding ListOfLapTimes, Mode=TwoWay}"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center" 
@@ -52,7 +52,8 @@
         </Grid>
         
         <Grid Grid.Row="3">
-            <ContentControl x:Name="AddedTime" Content="{Binding TotalTimeElapsed}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="40" />
+            <ContentControl x:Name="AddedTime" Content="{Binding TotalTimeElapsed}" Margin="20, 0, 0, 10" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="40" />
+            <Button x:Name="ResetAllTimes" Content="Reset" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
 
         <bab:BindableAppBar x:Name="AppBar">
@@ -62,7 +63,7 @@
                                         Visibility="{Binding IsVisible}"
                                         />
         </bab:BindableAppBar>
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="True" />-->
     </Grid>
 
 

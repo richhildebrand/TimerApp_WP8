@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -25,7 +26,9 @@ namespace PhoneApp1
  
             // Standard XAML initialization
             InitializeComponent();
- 
+            
+            (App.Current.Resources["PhoneAccentBrush"] as SolidColorBrush).Color = Colors.Yellow;
+
             // Show graphics profiling information while debugging.
             if (Debugger.IsAttached)
             {

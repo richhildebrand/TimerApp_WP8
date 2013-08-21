@@ -37,7 +37,7 @@ namespace TimerUI.ViewModels
             );
         }
 
-        private void UpdateVoiceCommandList()
+        public void UpdateVoiceCommandList()
         {
             var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingToModify);
             var stringListOfVoiceCommands = new List<string>();

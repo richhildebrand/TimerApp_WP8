@@ -59,5 +59,12 @@ namespace TimerUI.AppInit
             settingVoiceCommands.Add(CreateRecognizableString(newVoiceCommand));
             Set<List<RecognizableString>>(voiceSetting, settingVoiceCommands);
         }
+
+        public static void RemoveVoiceCommand(Settings voiceSetting, string voiceCommand)
+        {
+            var settingVoiceCommands = Get<List<RecognizableString>>(voiceSetting);
+            settingVoiceCommands = settingVoiceCommands.Where(vc => vc.Value != voiceCommand).ToList();
+            Set<List<RecognizableString>>(voiceSetting, settingVoiceCommands);
+        }
     }
 }

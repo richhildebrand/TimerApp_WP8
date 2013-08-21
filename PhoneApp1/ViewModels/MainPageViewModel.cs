@@ -174,7 +174,8 @@ namespace TimerUI.ViewModels
         {
             _previousMilli += _actualMilliseconds;
             var temp = new List<string>();
-            temp.Add(Milliseconds);
+            var lapEntry = "Lap " + (ListOfLapTimes.Count + 1) + " - " + Milliseconds;
+            temp.Add(lapEntry);
             ListOfLapTimes = temp.Union(ListOfLapTimes).ToList();
         }
 

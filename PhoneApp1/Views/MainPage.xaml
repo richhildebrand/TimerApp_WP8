@@ -5,7 +5,6 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:bab="clr-namespace:Caliburn.Micro.BindableAppBar;assembly=Caliburn.Micro.BindableAppBar"
-    xmlns:telerikSpeech="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Speech"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:speech="clr-namespace:TimerUI.Voice"
     shell:SystemTray.IsVisible="True">
@@ -30,18 +29,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" >
             <TextBlock x:Name="CurrentLap" FontSize="40" Margin="20, 0, 0, 0"/>
-            <telerikSpeech:SpeechManager.SpeechMetadata>
-                <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint=" " 
-                                                         InputIdentificationToken="MainContent"
-                                                         RecognizableStrings="{Binding ValidVoiceCommands}"
-                                                         InvalidInputAnnouncement = " "
-                                                         NotRecognizedInputAnnouncement = "Voice may have stopped."
-                                                         >
-                    <telerikSpeech:SpeechRecognitionMetadata.InputHandler>
-                        <speech:StartAndStopSpeechHandler/>
-                    </telerikSpeech:SpeechRecognitionMetadata.InputHandler>
-                </telerikSpeech:SpeechRecognitionMetadata>
-            </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
 
         <Grid x:Name="LapPanel" Grid.Row="2" Margin="20, 5, 0, 10">

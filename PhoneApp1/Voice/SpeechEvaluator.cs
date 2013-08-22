@@ -10,14 +10,14 @@ namespace TimerUI.Voice
     {
         public bool IsValidStartCommand(string possibleStartCommand)
         {
-            var startCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
-            return startCommands.Any(sc => AreEqual(sc.Value, possibleStartCommand));
+            var startCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands);
+            return startCommands.Any(sc => AreEqual(sc, possibleStartCommand));
         }
 
         public bool IsValidStopCommand(string possibleStopCommand)
         {
-            var startCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
-            return startCommands.Any(sc => AreEqual(sc.Value, possibleStopCommand));
+            var startCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands);
+            return startCommands.Any(sc => AreEqual(sc, possibleStopCommand));
         }
 
         private bool AreEqual(string validCommand, string possibleCommand)

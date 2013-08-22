@@ -39,10 +39,8 @@ namespace TimerUI.ViewModels
 
         public void UpdateVoiceCommandList()
         {
-            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingToModify);
-            var stringListOfVoiceCommands = new List<string>();
-            voiceCommands.ForEach(vc => stringListOfVoiceCommands.Add(vc.Value));
-            VoiceCommandList = stringListOfVoiceCommands;
+            var voiceCommands = SettingsManager.Get<List<string>>(SettingToModify);
+            VoiceCommandList = voiceCommands;
         }
 
         public void OnAddInputClose(InputPromptClosedEventArgs arg)

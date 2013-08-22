@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using Telerik.Windows.Controls;
 
 namespace TimerUI.AppInit
 {
@@ -19,13 +18,13 @@ namespace TimerUI.AppInit
         {
             SetToDefaultIfUnset<TimeSpan>("VoiceTimeout", TimeSpan.FromMinutes(6));
 
-            var startCommands = new List<RecognizableString>();
-            startCommands.Add(CreateRecognizableString("Start"));
-            SetToDefaultIfUnset<List<RecognizableString>>("StartVoiceCommands", startCommands);
+            var startCommands = new List<string>();
+            startCommands.Add("Start");
+            SetToDefaultIfUnset<List<string>>("StartVoiceCommands", startCommands);
 
-            var stopCommands = new List<RecognizableString>();
-            stopCommands.Add(CreateRecognizableString("Stop"));
-            SetToDefaultIfUnset<List<RecognizableString>>("StopVoiceCommands", stopCommands);
+            var stopCommands = new List<string>();
+            stopCommands.Add("Stop");
+            SetToDefaultIfUnset<List<string>>("StopVoiceCommands", stopCommands);
         }
 
         private static void SetToDefaultIfUnset<T>(string setting, T defaultValue)
@@ -46,25 +45,18 @@ namespace TimerUI.AppInit
             IsolatedStorageSettings.ApplicationSettings[setting.ToString()] = value;
         }
 
-        private static RecognizableString CreateRecognizableString(string voiceCommand)
-        {
-            var recognizableString = new RecognizableString();
-            recognizableString.Value = voiceCommand;
-            return recognizableString;
-        }
-
         public static void AddNewVoiceCommand(Settings voiceSetting, string newVoiceCommand)
         {
-            var settingVoiceCommands = Get<List<RecognizableString>>(voiceSetting);
-            settingVoiceCommands.Add(CreateRecognizableString(newVoiceCommand));
-            Set<List<RecognizableString>>(voiceSetting, settingVoiceCommands);
+            var settingVoiceCommands = Get<List<string>>(voiceSetting);
+            settingVoiceCommands.Add(newVoiceCommand);
+            Set<List<string>>(voiceSetting, settingVoiceCommands);
         }
 
         public static void RemoveVoiceCommand(Settings voiceSetting, string voiceCommand)
         {
-            var settingVoiceCommands = Get<List<RecognizableString>>(voiceSetting);
-            settingVoiceCommands = settingVoiceCommands.Where(vc => vc.Value != voiceCommand).ToList();
-            Set<List<RecognizableString>>(voiceSetting, settingVoiceCommands);
+            var settingVoiceCommands = Get<List<string>>(voiceSetting);
+            settingVoiceCommands = settingVoiceCommands.Where(vc => vc != voiceCommand).ToList();
+            Set<List<string>>(voiceSetting, settingVoiceCommands);
         }
     }
 }

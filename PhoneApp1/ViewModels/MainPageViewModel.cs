@@ -18,7 +18,7 @@ namespace TimerUI.ViewModels
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
-        private List<RecognizableString>_validVoiceCommands;
+        private List<string>_validVoiceCommands;
         private string _milliseconds;
         private string _currentLap;
         private string _buttonText;
@@ -46,10 +46,10 @@ namespace TimerUI.ViewModels
 
             Speech.Initialize();
             string commands = "";
-            var voiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands)
-                .Union(SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands)).ToList();
+            var voiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands)
+                .Union(SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands)).ToList();
 
-            voiceCommands.ForEach(sc => commands = commands + ", " + sc.Value);
+            voiceCommands.ForEach(sc => commands = commands + ", " + sc);
             Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands);
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
@@ -62,8 +62,15 @@ namespace TimerUI.ViewModels
         {
             base.OnViewReady(view);
             ButtonText = "Start";
-            ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
-            SpeechManager.StartListening();
+            Speech.ActivateStartCommands();
+            StartListening();
+        }
+
+        private async void StartListening()
+        {
+            var result = await Speech.Recognizer.RecognizeAsync();
+            var sassh = new StartAndStopSpeechHandler();
+            sassh.HandleInput(result.Text);
         }
 
         protected override void OnDeactivate(bool close)
@@ -84,7 +91,7 @@ namespace TimerUI.ViewModels
                 ButtonText = "Start";
                 AddLapTimeToList();
                 AddTotalTime();
-                ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StartVoiceCommands);
+                ValidVoiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands);
             }
         }
 
@@ -95,7 +102,7 @@ namespace TimerUI.ViewModels
                 _stopWatch.Reset();
                 _stopWatch.Start();
                 ButtonText = "Stop";
-                ValidVoiceCommands = SettingsManager.Get<List<RecognizableString>>(SettingsManager.Settings.StopVoiceCommands);
+                ValidVoiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands);
             }
         }
 
@@ -111,7 +118,7 @@ namespace TimerUI.ViewModels
             CurrentLap = "Current Lap - " + Milliseconds;
         }
 
-        public List<RecognizableString> ValidVoiceCommands
+        public List<string> ValidVoiceCommands
         {
             get { return _validVoiceCommands; }
             set { _validVoiceCommands = value; NotifyOfPropertyChange(() => ValidVoiceCommands); }

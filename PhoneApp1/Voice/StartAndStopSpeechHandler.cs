@@ -8,7 +8,7 @@ using TimerUI.Messages;
 
 namespace TimerUI.Voice
 {
-    public class StartAndStopSpeechHandler : ISpeechInputHandler
+    public class StartAndStopSpeechHandler
     {
         private readonly IEventAggregator _messenger;
         private readonly SpeechEvaluator _speechEvaluator;
@@ -23,12 +23,7 @@ namespace TimerUI.Voice
                                      .FirstOrDefault() as IEventAggregator;
         }
 
-        public bool CanHandleInput(string input)
-        {
-            return true;
-        }
-
-        public void HandleInput(FrameworkElement target, string input)
+        public void HandleInput(string input)
         {
             if (_speechEvaluator.IsValidStartCommand(input))
             {
@@ -41,11 +36,6 @@ namespace TimerUI.Voice
                 Speech.Synthesizer.SpeakTextAsync("Timer stopped.");
             }
             SpeechManager.StartListening();
-        }
-
-        public void NotifyInputError(FrameworkElement target)
-        {
-            MessageBox.Show("Error");
         }
     }
 }

@@ -21,14 +21,15 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Voice Activated StopWatch" />
-            <TextBlock x:Name="Milliseconds" FontSize="30" />
+        <StackPanel  x:Name="TitlePanel" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0, 0, 0, 0" >
+            <Button x:Name="ToggleStartAndStopButton" HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
+                <TextBlock Text="{Binding ButtonText}" TextAlignment="Center" FontSize="50"/>
+            </Button>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button x:Name="ToggleStartAndStopButton" Content="{Binding ButtonText}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Grid x:Name="ContentPanel" Grid.Row="1" >
+            <TextBlock x:Name="CurrentLap" FontSize="40" Margin="20, 0, 0, 0"/>
             <telerikSpeech:SpeechManager.SpeechMetadata>
                 <telerikSpeech:SpeechRecognitionMetadata InputIdentificationHint=" " 
                                                          InputIdentificationToken="MainContent"
@@ -43,7 +44,7 @@
             </telerikSpeech:SpeechManager.SpeechMetadata>
         </Grid>
 
-        <Grid x:Name="LapPanel" Grid.Row="2" Margin="20, 0, 0, 0">
+        <Grid x:Name="LapPanel" Grid.Row="2" Margin="20, 5, 0, 10">
             <telerikPrimitives:RadDataBoundListBox  ItemsSource="{Binding ListOfLapTimes, Mode=TwoWay}"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center" 

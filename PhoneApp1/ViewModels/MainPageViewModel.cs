@@ -20,6 +20,7 @@ namespace TimerUI.ViewModels
 
         private List<RecognizableString>_validVoiceCommands;
         private string _milliseconds;
+        private string _currentLap;
         private string _buttonText;
         private string _addItemText;
         private Uri _icon;
@@ -106,7 +107,8 @@ namespace TimerUI.ViewModels
         public void Handle(StopwatchTickEvent stopwatchTick)
         {
             _actualMilliseconds = stopwatchTick.Milliseconds;
-            Milliseconds = _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
+            Milliseconds =  _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
+            CurrentLap = "Current Lap - " + Milliseconds;
         }
 
         public List<RecognizableString> ValidVoiceCommands
@@ -115,9 +117,15 @@ namespace TimerUI.ViewModels
             set { _validVoiceCommands = value; NotifyOfPropertyChange(() => ValidVoiceCommands); }
         }
 
+        public string CurrentLap
+        {
+            get { return _currentLap; }
+            set { _currentLap = value; NotifyOfPropertyChange(() => CurrentLap); }
+        }
+
         public string Milliseconds
         { 
-            get { return this._milliseconds; }
+            get { return _milliseconds; }
             set { _milliseconds = value; NotifyOfPropertyChange(() => Milliseconds); }
         }
 

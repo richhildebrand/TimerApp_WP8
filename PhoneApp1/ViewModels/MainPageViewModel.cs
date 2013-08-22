@@ -42,7 +42,7 @@ namespace TimerUI.ViewModels
             Icon = new Uri("/Images/appbar.settings.png", UriKind.Relative);
             IsVisible = true;
             ListOfLapTimes = new List<string>();
-            TotalTimeElapsed = "";
+            TotalTimeElapsed = "0";
 
             Speech.Initialize();
             string commands = "";
@@ -162,7 +162,7 @@ namespace TimerUI.ViewModels
         public string TotalTimeElapsed
         {
             get { return this._totalTimeElapsed; }
-            set { _totalTimeElapsed = value; NotifyOfPropertyChange(() => TotalTimeElapsed); }
+            set { _totalTimeElapsed = "Total Time: " + value; NotifyOfPropertyChange(() => TotalTimeElapsed); }
         }
 
         public void ToggleStartAndStopButton(object sender)
@@ -190,7 +190,7 @@ namespace TimerUI.ViewModels
         public void AddTotalTime()
         {
             long totalSeconds = _previousMilli;
-            TotalTimeElapsed = "Total Time: " +_timeFormatter.FormatMilliseconds(totalSeconds);
+            TotalTimeElapsed = _timeFormatter.FormatMilliseconds(totalSeconds);
         }
 
         public void ResetAllTimes()
@@ -199,6 +199,7 @@ namespace TimerUI.ViewModels
             TotalTimeElapsed = "";
             ListOfLapTimes = new List<string>();
             Milliseconds = "0";
+            TotalTimeElapsed = "0";
         }
     }
 }

@@ -48,7 +48,8 @@
             <telerikPrimitives:RadDataBoundListBox  ItemsSource="{Binding ListOfLapTimes, Mode=TwoWay}"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center" 
-                                                    FontSize="35">
+                                                    FontSize="35"
+                                                    EmptyContent="" >
             </telerikPrimitives:RadDataBoundListBox >
         </Grid>
         

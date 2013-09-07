@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
-using Telerik.Windows.Controls;
 using TimerUI.AppInit;
 using TimerUI.Messages;
 
@@ -35,7 +34,13 @@ namespace TimerUI.Voice
                 _messenger.Publish(new StopwatchStopEvent());
                 Speech.Synthesizer.SpeakTextAsync("Timer stopped.");
             }
-            SpeechManager.StartListening();
+            StartListening();
+        }
+
+        public async void StartListening()
+        {
+            var result = await Speech.Recognizer.RecognizeAsync();
+            HandleInput(result.Text);
         }
     }
 }

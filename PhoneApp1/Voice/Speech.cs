@@ -29,6 +29,8 @@ namespace TimerUI.Voice
         private static SpeechRecognizer GetSpeechRecognizer()
         {
             var recognizer = new SpeechRecognizer();
+            recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
+
             string[] startCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands).ToArray<string>();
             recognizer.Grammars.AddGrammarFromList("Start", startCommands);
 
@@ -49,15 +51,6 @@ namespace TimerUI.Voice
 
             speechSynthesizer.SetVoice(enUSMaleVoices.ElementAt(0));
             return speechSynthesizer;
-        }
-
-        public static void ActivateStartCommands()
-        {
-            string[] startCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands).ToArray<string>();
-            Speech.Recognizer.Grammars.AddGrammarFromList("Start", startCommands);
-            Speech.Recognizer.Grammars["Start"].Enabled = true;
-            Speech.Recognizer.Grammars["Stop"].Enabled = false;
-            Speech.Recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
         }
     }
 }

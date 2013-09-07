@@ -14,11 +14,11 @@ namespace TimerUI.ViewModels
     public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
+        private readonly StartAndStopSpeechHandler _speechHandler = new StartAndStopSpeechHandler();
         private readonly INavigationService _navigationService;
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
-        private List<string>_validVoiceCommands;
         private string _milliseconds;
         private string _currentLap;
         private string _buttonText;
@@ -62,16 +62,13 @@ namespace TimerUI.ViewModels
         {
             base.OnViewReady(view);
             ButtonText = "Start";
-            Speech.ActivateStartCommands();
-            StartListening();
+            Speech.Recognizer.Grammars["Start"].Enabled = true;
+            Speech.Recognizer.Grammars["Stop"].Enabled = false;
+            Speech.Recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
+            _speechHandler.StartListening();
         }
 
-        private async void StartListening()
-        {
-            var result = await Speech.Recognizer.RecognizeAsync();
-            var sassh = new StartAndStopSpeechHandler();
-            sassh.HandleInput(result.Text);
-        }
+
 
         protected override void OnDeactivate(bool close)
         {
@@ -88,10 +85,11 @@ namespace TimerUI.ViewModels
             if (_stopWatch.IsRunning())
             {
                 _stopWatch.Stop();
+                Speech.Recognizer.Grammars["Start"].Enabled = true;
+                Speech.Recognizer.Grammars["Stop"].Enabled = false;
                 ButtonText = "Start";
                 AddLapTimeToList();
                 AddTotalTime();
-                ValidVoiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands);
             }
         }
 
@@ -99,10 +97,10 @@ namespace TimerUI.ViewModels
         {
             if (!_stopWatch.IsRunning())
             {
-                _stopWatch.Reset();
                 _stopWatch.Start();
+                Speech.Recognizer.Grammars["Start"].Enabled = false;
+                Speech.Recognizer.Grammars["Stop"].Enabled = true;
                 ButtonText = "Stop";
-                ValidVoiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands);
             }
         }
 
@@ -116,12 +114,6 @@ namespace TimerUI.ViewModels
             _actualMilliseconds = stopwatchTick.Milliseconds;
             Milliseconds =  _timeFormatter.FormatMilliseconds(stopwatchTick.Milliseconds);
             CurrentLap = "Current Lap - " + Milliseconds;
-        }
-
-        public List<string> ValidVoiceCommands
-        {
-            get { return _validVoiceCommands; }
-            set { _validVoiceCommands = value; NotifyOfPropertyChange(() => ValidVoiceCommands); }
         }
 
         public string CurrentLap

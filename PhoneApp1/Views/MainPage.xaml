@@ -20,14 +20,17 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel  x:Name="TitlePanel" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0, 0, 0, 0" >
-            <Button x:Name="ToggleStartAndStopButton" HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
-                <TextBlock Text="{Binding ButtonText}" TextAlignment="Center" FontSize="50"/>
+        <Grid  x:Name="TitlePanel" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0, 0, 0, 0" >
+            <Button x:Name="StartButton" Visibility="{Binding ShowHideStartButton}" HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
+                <TextBlock Text="Start" TextAlignment="Center" FontSize="50"/>
             </Button>
-            <Button x:Name="LapButton" Visibility="{Binding ShowLapButton}"  HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
+            <Button x:Name="LapButton" Width="150" Visibility="{Binding ShowLapButton}"  HorizontalAlignment="Left" Margin="10,30,10,30">
                 <TextBlock Text="Lap" TextAlignment="Center" FontSize="50"/>
             </Button>
-        </StackPanel>
+            <Button x:Name="StopButton" Width="300" Visibility="{Binding ShowLapButton}" HorizontalAlignment="Right" Margin="10,30,10,30">
+                <TextBlock Text="Stop" TextAlignment="Center" FontSize="50"/>
+            </Button>
+        </Grid>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" >

@@ -20,6 +20,7 @@ namespace TimerUI.ViewModels
         private readonly CustomStopwatch _stopWatch;
 
         private Visibility _showLapButton;
+        private Visibility _showHideStartButton;
         private string _milliseconds;
         private string _currentLap;
         private string _buttonText;
@@ -51,7 +52,7 @@ namespace TimerUI.ViewModels
                 .Union(SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands)).ToList();
 
             voiceCommands.ForEach(sc => commands = commands + ", " + sc);
-            Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands);
+            Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands + ", Lap.");
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
@@ -62,6 +63,7 @@ namespace TimerUI.ViewModels
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);
+            ShowHideStartButton = Visibility.Visible;
             ShowLapButton = Visibility.Collapsed;
             ButtonText = "Start";
             Speech.Recognizer.Grammars["Start"].Enabled = true;
@@ -89,6 +91,7 @@ namespace TimerUI.ViewModels
                 Speech.Recognizer.Grammars["Start"].Enabled = true;
                 Speech.Recognizer.Grammars["Lap"].Enabled = false;
                 Speech.Recognizer.Grammars["Stop"].Enabled = false;
+                ShowHideStartButton = Visibility.Visible;
                 ShowLapButton = Visibility.Collapsed;
                 ButtonText = "Start";
                 AddLapTimeToList();
@@ -104,6 +107,7 @@ namespace TimerUI.ViewModels
                 Speech.Recognizer.Grammars["Start"].Enabled = false;
                 Speech.Recognizer.Grammars["Lap"].Enabled = true;
                 Speech.Recognizer.Grammars["Stop"].Enabled = true;
+                ShowHideStartButton = Visibility.Collapsed;
                 ShowLapButton = Visibility.Visible;
                 ButtonText = "Stop";
             }
@@ -141,6 +145,12 @@ namespace TimerUI.ViewModels
         {
             get { return _showLapButton; }
             set { _showLapButton = value; NotifyOfPropertyChange(() => ShowLapButton); }
+        }
+
+        public Visibility ShowHideStartButton
+        {
+            get { return _showHideStartButton; }
+            set { _showHideStartButton = value; NotifyOfPropertyChange(() => ShowHideStartButton); }
         }
 
         public string Milliseconds
@@ -185,17 +195,14 @@ namespace TimerUI.ViewModels
             set { _totalTimeElapsed = "Total Time: " + value; NotifyOfPropertyChange(() => TotalTimeElapsed); }
         }
 
-        public void ToggleStartAndStopButton(object sender)
+        public void StartButton(object sender)
         {
-            if (ButtonText == "Start")
-            {
-                _messenger.Publish(new StopwatchStartEvent());
-            }
-            else if (ButtonText == "Stop")
-            {
-                _messenger.Publish(new StopwatchStopEvent());
-                Telerik.Windows.Controls.SpeechManager.StartListening();
-            }
+            _messenger.Publish(new StopwatchStartEvent());
+        }
+
+        public void StopButton(object sender)
+        {
+            _messenger.Publish(new StopwatchStopEvent());
         }
 
         public void LapButton(object sender)

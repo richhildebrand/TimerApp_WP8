@@ -37,6 +37,9 @@ namespace TimerUI.Voice
             string[] stopCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands).ToArray<string>();
             recognizer.Grammars.AddGrammarFromList("Stop", stopCommands);
 
+            string[] lapCommands = { "Lap" };
+            recognizer.Grammars.AddGrammarFromList("Lap", lapCommands);
+
             return recognizer;
         }
 

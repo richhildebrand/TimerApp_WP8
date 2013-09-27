@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using TimerUI.AppInit;
@@ -33,6 +35,11 @@ namespace TimerUI.Voice
             {
                 _messenger.Publish(new StopwatchStopEvent());
                 Speech.Synthesizer.SpeakTextAsync("Timer stopped.");
+            }
+            else if (input == "Lap")
+            {
+                _messenger.Publish(new StopwatchLapEvent());
+                Speech.Synthesizer.SpeakTextAsync("New lap started.");
             }
             StartListening();
         }

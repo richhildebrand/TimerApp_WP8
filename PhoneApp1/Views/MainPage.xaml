@@ -24,6 +24,9 @@
             <Button x:Name="ToggleStartAndStopButton" HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
                 <TextBlock Text="{Binding ButtonText}" TextAlignment="Center" FontSize="50"/>
             </Button>
+            <Button x:Name="LapButton" Visibility="{Binding ShowLapButton}"  HorizontalContentAlignment="Stretch" Margin="10,30,10,30">
+                <TextBlock Text="Lap" TextAlignment="Center" FontSize="50"/>
+            </Button>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -44,14 +47,6 @@
             <ContentControl x:Name="AddedTime" Content="{Binding TotalTimeElapsed}" Margin="20, 0, 0, 10" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="40" />
             <Button x:Name="ResetAllTimes" Content="Reset" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
-
-        <bab:BindableAppBar x:Name="AppBar">
-            <bab:BindableAppBarButton x:Name="NavigateToSettingsPage"
-                                        Text="{Binding AddItemText}"
-                                        IconUri="{Binding Icon}"
-                                        Visibility="{Binding IsVisible}"
-                                        />
-        </bab:BindableAppBar>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="True" />-->
     </Grid>
 

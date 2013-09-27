@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using Caliburn.Micro;
-using Telerik.Windows.Controls;
 using TimerUI.AppInit;
 using TimerUI.Helpers;
 using TimerUI.Messages;
@@ -11,7 +11,7 @@ using TimerUI.Voice;
 
 namespace TimerUI.ViewModels
 {
-    public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>
+    public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>, IHandle<StopwatchLapEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly StartAndStopSpeechHandler _speechHandler = new StartAndStopSpeechHandler();
@@ -19,6 +19,7 @@ namespace TimerUI.ViewModels
         private readonly IEventAggregator _messenger;
         private readonly CustomStopwatch _stopWatch;
 
+        private Visibility _showLapButton;
         private string _milliseconds;
         private string _currentLap;
         private string _buttonText;
@@ -61,10 +62,11 @@ namespace TimerUI.ViewModels
         protected override void OnViewReady(object view)
         {
             base.OnViewReady(view);
+            ShowLapButton = Visibility.Collapsed;
             ButtonText = "Start";
             Speech.Recognizer.Grammars["Start"].Enabled = true;
+            Speech.Recognizer.Grammars["Lap"].Enabled = false;
             Speech.Recognizer.Grammars["Stop"].Enabled = false;
-            Speech.Recognizer.Settings.InitialSilenceTimeout = SettingsManager.Get<TimeSpan>(SettingsManager.Settings.VoiceTimeout);
             _speechHandler.StartListening();
         }
 
@@ -77,7 +79,6 @@ namespace TimerUI.ViewModels
             {
                 Handle(new StopwatchStopEvent());
             }
-            SpeechManager.Reset();
         }
 
         public void Handle(StopwatchStopEvent message)
@@ -86,7 +87,9 @@ namespace TimerUI.ViewModels
             {
                 _stopWatch.Stop();
                 Speech.Recognizer.Grammars["Start"].Enabled = true;
+                Speech.Recognizer.Grammars["Lap"].Enabled = false;
                 Speech.Recognizer.Grammars["Stop"].Enabled = false;
+                ShowLapButton = Visibility.Collapsed;
                 ButtonText = "Start";
                 AddLapTimeToList();
                 AddTotalTime();
@@ -99,8 +102,20 @@ namespace TimerUI.ViewModels
             {
                 _stopWatch.Start();
                 Speech.Recognizer.Grammars["Start"].Enabled = false;
+                Speech.Recognizer.Grammars["Lap"].Enabled = true;
                 Speech.Recognizer.Grammars["Stop"].Enabled = true;
+                ShowLapButton = Visibility.Visible;
                 ButtonText = "Stop";
+            }
+        }
+
+        public void Handle(StopwatchLapEvent message)
+        {
+            if (_stopWatch.IsRunning())
+            {
+                Handle(new StopwatchStopEvent());
+                Handle(new StopwatchStartEvent());
+
             }
         }
 
@@ -120,6 +135,12 @@ namespace TimerUI.ViewModels
         {
             get { return _currentLap; }
             set { _currentLap = value; NotifyOfPropertyChange(() => CurrentLap); }
+        }
+
+        public Visibility ShowLapButton
+        {
+            get { return _showLapButton; }
+            set { _showLapButton = value; NotifyOfPropertyChange(() => ShowLapButton); }
         }
 
         public string Milliseconds
@@ -177,6 +198,11 @@ namespace TimerUI.ViewModels
             }
         }
 
+        public void LapButton(object sender)
+        {
+            Handle(new StopwatchLapEvent());
+        }
+
         public void AddLapTimeToList()
         {
             _previousMilli += _actualMilliseconds;
@@ -195,10 +221,12 @@ namespace TimerUI.ViewModels
         public void ResetAllTimes()
         {
             Handle(new StopwatchStopEvent());
+            CurrentLap = "";
             TotalTimeElapsed = "";
             ListOfLapTimes = new List<string>();
             Milliseconds = "0";
             TotalTimeElapsed = "0";
+            _previousMilli = 0;
         }
     }
 }

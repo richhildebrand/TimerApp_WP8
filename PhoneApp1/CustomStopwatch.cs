@@ -43,6 +43,7 @@ namespace TimerUI
 
         public void Start()
         {
+            _accurateTimer.Reset();
             _accurateTimer.Start();
             _timerWithEvenHooks.Start();
         }

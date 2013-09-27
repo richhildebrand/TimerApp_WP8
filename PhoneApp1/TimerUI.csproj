@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppInit\SettingsManager.cs" />
+    <Compile Include="Messages\StopwatchResetEvent.cs" />
     <Compile Include="Messages\StopwatchLapEvent.cs" />
     <Compile Include="Voice\SpeechEvaluator.cs" />
     <Compile Include="LocalizedStrings.cs" />

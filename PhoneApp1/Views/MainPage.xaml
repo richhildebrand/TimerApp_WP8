@@ -48,7 +48,7 @@
         
         <Grid Grid.Row="3">
             <ContentControl x:Name="AddedTime" Content="{Binding TotalTimeElapsed}" Margin="20, 0, 0, 10" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="40" />
-            <Button x:Name="ResetAllTimes" Content="Reset" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+            <Button x:Name="ResetAllTimes" Content="Clear" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="True" />-->
     </Grid>

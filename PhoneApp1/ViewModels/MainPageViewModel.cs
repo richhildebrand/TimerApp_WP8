@@ -11,7 +11,7 @@ using TimerUI.Voice;
 
 namespace TimerUI.ViewModels
 {
-    public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>, IHandle<StopwatchLapEvent>
+    public class MainPageViewModel : Screen, IHandle<StopwatchTickEvent>, IHandle<StopwatchStartEvent>, IHandle<StopwatchStopEvent>, IHandle<StopwatchLapEvent>, IHandle<StopwatchResetEvent>
     {
         private readonly TimeFormatter _timeFormatter = new TimeFormatter();
         private readonly StartAndStopSpeechHandler _speechHandler = new StartAndStopSpeechHandler();
@@ -47,12 +47,13 @@ namespace TimerUI.ViewModels
             TotalTimeElapsed = "0";
 
             Speech.Initialize();
+            Speech.Recognizer.Grammars["Reset"].Enabled = true;
             string commands = "";
             var voiceCommands = SettingsManager.Get<List<string>>(SettingsManager.Settings.StartVoiceCommands)
                 .Union(SettingsManager.Get<List<string>>(SettingsManager.Settings.StopVoiceCommands)).ToList();
 
             voiceCommands.ForEach(sc => commands = commands + ", " + sc);
-            Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands + ", Lap.");
+            Speech.Synthesizer.SpeakTextAsync("Current voice commands are set to " + commands + ", Lap, and Clear.");
 
             Bootstrapper bootstrapper = Application.Current.Resources["bootstrapper"] as Bootstrapper;
             _messenger = bootstrapper.Container.GetAllInstances(typeof(IEventAggregator))
@@ -119,8 +120,12 @@ namespace TimerUI.ViewModels
             {
                 Handle(new StopwatchStopEvent());
                 Handle(new StopwatchStartEvent());
-
             }
+        }
+
+        public void Handle(StopwatchResetEvent message)
+        {
+            ResetAllTimes();
         }
 
         public void NavigateToSettingsPage()
@@ -227,7 +232,10 @@ namespace TimerUI.ViewModels
 
         public void ResetAllTimes()
         {
-            Handle(new StopwatchStopEvent());
+            if (_stopWatch.IsRunning())
+            {
+                Handle(new StopwatchStopEvent());
+            }
             CurrentLap = "";
             TotalTimeElapsed = "";
             ListOfLapTimes = new List<string>();

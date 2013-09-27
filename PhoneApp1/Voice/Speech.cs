@@ -40,6 +40,10 @@ namespace TimerUI.Voice
             string[] lapCommands = { "Lap" };
             recognizer.Grammars.AddGrammarFromList("Lap", lapCommands);
 
+            string[] resetCommand = { "Clear" };
+            recognizer.Grammars.AddGrammarFromList("Reset", resetCommand);
+            
+
             return recognizer;
         }
 

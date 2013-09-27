@@ -26,6 +26,7 @@ namespace TimerUI.Voice
 
         public void HandleInput(string input)
         {
+            var thing = 0;
             if (_speechEvaluator.IsValidStartCommand(input))
             {
                 _messenger.Publish(new StopwatchStartEvent());
@@ -40,6 +41,10 @@ namespace TimerUI.Voice
             {
                 _messenger.Publish(new StopwatchLapEvent());
                 Speech.Synthesizer.SpeakTextAsync("New lap started.");
+            }
+            else if (input == "Clear")
+            {
+                _messenger.Publish(new StopwatchResetEvent());
             }
             StartListening();
         }

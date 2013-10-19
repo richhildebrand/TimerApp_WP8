@@ -51,8 +51,12 @@ namespace TimerUI.Voice
 
         public async void StartListening()
         {
-            var result = await Speech.Recognizer.RecognizeAsync();
-            HandleInput(result.Text);
+            try
+            {
+                var result = await Speech.Recognizer.RecognizeAsync();
+                HandleInput(result.Text);
+            }
+            catch { } // voice is not active on the phone
         }
     }
 }

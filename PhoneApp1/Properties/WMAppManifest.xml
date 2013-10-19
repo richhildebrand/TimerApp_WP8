@@ -2,7 +2,7 @@
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
   <App xmlns="" ProductID="{e653afda-3c0f-4f22-8079-56386e949339}" Title="TalkWatch" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PhoneApp1 author" Description="Sample description" Publisher="PhoneApp1" PublisherID="{00d54b31-3dc4-4266-a519-863c22a9ae69}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Images\red.clock.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -18,9 +18,9 @@
     <Tokens>
       <PrimaryToken TokenID="PhoneApp1Token" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Images\red.clock.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Images\white.clock.png</BackgroundImageURI>
           <Title>TalkWatch</Title>
           <BackContent>
           </BackContent>

@@ -171,6 +171,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\appbar.settings.png" />
+    <Content Include="Images\red.clock.png" />
+    <Content Include="Images\white.clock.png" />
     <Content Include="Libs\Caliburn.Micro.dll" />
     <Content Include="Libs\Caliburn.Micro.Extensions.dll" />
     <Content Include="Libs\Telerik.Windows.Controls.Speech.dll" />

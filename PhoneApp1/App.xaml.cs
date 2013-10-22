@@ -48,7 +48,8 @@ namespace PhoneApp1
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
- 
+            //Since this is a stop watch app, it will be useful to not have the screen lock in the middle of using the app.
+            PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
         }
     }
 }
